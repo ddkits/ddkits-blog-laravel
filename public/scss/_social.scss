@@ -1,0 +1,72 @@
+// social media
+
+.share-buttons {
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 60px;
+    z-index: 2;
+    position: relative;
+    text-align: center;
+    list-style-type: none !important;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+.share-buttons li {
+    height: auto;
+    flex: 0 1 auto;
+    width: calc(25% - 1px);
+    margin-right: 1px;
+}
+
+.share-buttons li:last-child {
+    width: 25%;
+    margin-right: 0;
+}
+
+.share-buttons svg {
+    fill: #fff;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+.share-googleplus svg {
+    width: 20px;
+    height: 16px;
+}
+
+.share-buttons a {
+    display: block;
+    padding: 12px 12px 9px;
+    text-align: center;
+}
+
+.share-buttons li:first-child a {
+    border-radius: 3px 0 0 3px;
+}
+
+.share-buttons li:last-child a {
+    border-radius: 0 3px 3px 0;
+}
+
+.share-twitter {
+    background: #1da1f2;
+}
+
+.share-facebook {
+    background: #3b5998;
+}
+
+.share-googleplus {
+    background: #db4437;
+}
+
+.share-pinterest {
+    background: #b5071a;
+}

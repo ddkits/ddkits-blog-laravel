@@ -1,0 +1,240 @@
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes imageIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 70%;
+    }
+}
+
+@keyframes fadeAndScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9, 0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
+
+// Styling for the masthead
+
+img#highlights-image {
+    position: absolute;
+    background-attachment: absolute;
+    background-size: 100% 100%;
+    z-index: -2;
+    top: 0;
+    height: 500px !important;
+    right: 0;
+    background: $white;
+    width: 100%;
+    animation-duration: 2s;
+    // animation-name: imageIn;
+}
+#header-background {
+    background: $black;
+    z-index: -20;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 500px;
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: $white;
+    }
+}
+#controller {
+    position: absolute;
+    margin-top: -50px;
+    color: $white;
+    animation-duration: 2s;
+    animation-name: fadeAndScale;
+    ul {
+        li {
+            &.disabled {
+                display: none;
+            }
+            border: 1px solid $black;
+            border-radius: 50%;
+            padding: 10px;
+            background: $white;
+            a {
+                color: $white;
+            }
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    #highlights-content {
+        padding-top: 10%;
+        width: 100%;
+        max-width: 80% !important;
+    }
+}
+header.masthead {
+    min-height: 50px;
+    #highlights {
+        margin-top: 70px;
+        font-style: $main-font;
+        font-size: $main-font-base-size;
+        height: 500px !important;
+        background: rgba($color: $black, $alpha: 0.7);
+        background-size: cover;
+        z-index: 3;
+
+        // &::after {
+        //   content: "";
+        //   position: absolute;
+        //   width: 50%;
+        //   background-image: $white;
+        //   opacity: 1;
+        //   left: 0;
+        //   top: 0;
+        //   height: 500px;
+        //   border-style: none;
+        //   z-index: -1;
+        //   transform: skew(40deg);
+        //   box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 6px rgba(0, 0, 0, 0.19);
+        // }
+
+        #highlights-content {
+            color: $white;
+            margin-left: 10%;
+            max-width: 40%;
+            margin-top: 10%;
+            z-index: 1;
+            h1 {
+                font-size: 42px;
+                font-style: $main-font !important;
+                /* typing style
+              overflow: hidden;
+              border-right: .15em solid $black;
+              white-space: nowrap;
+              margin: 0;
+              letter-spacing: .15em;
+              animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;*/
+            }
+            a {
+                -webkit-transition: width 2s, height 2s, background-color 2s,
+                    -webkit-transform 2s;
+                transition: width 2s, height 2s, background-color 2s,
+                    transform 2s;
+                &:hover {
+                    background-color: $white;
+                    color: $black;
+                    // -webkit-transform: rotate(360deg);
+                    // transform: rotate(360deg);
+                }
+            }
+        }
+        @media (max-width: $desktop) {
+            margin-top: 50px;
+            &::after,
+            &::before {
+                transform: skew(0deg);
+            }
+        }
+    }
+    margin-bottom: 0px;
+    .page-heading,
+    .post-heading,
+    .site-heading {
+        padding: 200px 0 150px;
+        color: $black;
+        font-family: $main-font;
+        @media only screen and (min-width: 768px) {
+            padding: 200px 0;
+        }
+    }
+    .page-heading,
+    .site-heading {
+        text-align: center;
+        h1 {
+            font-size: 56px;
+            margin-top: 0;
+            color: $white;
+            font-family: $main-font;
+        }
+        .subheading {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 1.1;
+            display: block;
+            margin: 10px 0 0;
+            @include sans-serif-font;
+            font-family: $main-font;
+        }
+        @media only screen and (min-width: 768px) {
+            h1 {
+                font-size: 50px auto;
+            }
+        }
+    }
+    .post-heading {
+        h1 {
+            font-size: 35px;
+        }
+        .meta,
+        .subheading {
+            line-height: 1.1;
+            display: block;
+        }
+        .subheading {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 10px 0 30px;
+            @include sans-serif-font;
+        }
+        .meta {
+            font-size: 20px;
+            font-weight: 300;
+            font-style: italic;
+            @include serif-font;
+            a {
+                color: white;
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            h1 {
+                font-size: 55px;
+            }
+            .subheading {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+// pyramid rotates
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotateY(0);
+    }
+    to {
+        -webkit-transform: rotateY(360deg);
+    }
+}

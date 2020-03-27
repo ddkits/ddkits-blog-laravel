@@ -1,0 +1,15 @@
+// Login page styles
+
+#login-template {
+  color: $black;
+  vertical-align: middle;
+  text-align: left;
+  section {
+    max-width: 60%;
+    margin: 15% 30%;
+  }
+  .col-md-6 {
+    padding: 0;
+    min-width: 40%;
+  }
+}

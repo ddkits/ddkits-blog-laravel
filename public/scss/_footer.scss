@@ -1,0 +1,18 @@
+// Styling for the footer
+footer {
+  box-shadow: 8px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: $main-gx;
+  color: $white;
+  padding: 30px 0 45px;
+  .list-inline {
+    margin: 0;
+    padding: 0;
+    color: $white;
+  }
+  #copyright {
+    font-size: 14px;
+    margin-bottom: 0;
+    text-align: center;
+    color: $white;
+  }
+}

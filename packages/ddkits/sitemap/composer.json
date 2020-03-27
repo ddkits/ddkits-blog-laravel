@@ -1,0 +1,13 @@
+{
+    "name": "ddktits/sitemap",
+    "description": "DDKits sitemap is the solution for your Laravel Sitemap",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sam Elayyoub",
+            "email": "melayyoub@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

@@ -1,0 +1,149 @@
+// Styling for the navbar
+#mainNav {
+  position: absolute;
+  background-color: $white !important;
+  @include sans-serif-font;
+  .navbar-brand {
+    font-family: $main-font;
+    font-weight: 800;
+    a {
+      color: $black;
+    }
+    z-index: 10;
+  }
+  .navbar-toggler {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 13px;
+    text-transform: uppercase;
+    color: $gray-light;
+    font-family: $main-font;
+  }
+  .navbar-nav {
+    > li.nav-item {
+      > a {
+        font-size: 12px;
+        font-family: $main-font;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: $black;
+      }
+      &:hover {
+        cursor: pointer;
+        cursor: hand;
+        font-family: $main-font;
+        color: $white;
+        box-shadow: 1px 1px 10px $black;
+        margin-top: -3px;
+        background: $black;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+  @media only screen and (min-width: $desktop) {
+    background: transparent;
+    .navbar-brand {
+      padding: 15px 20px;
+      color: $black;
+    }
+    .navbar-nav {
+      > li.nav-item {
+        > a {
+          padding: 15px 20px;
+          color: $black;
+          font-family: $main-font;
+          &:focus,
+          &:hover {
+            color: fade-out(white, 0.2);
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: $desktop) {
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    &.is-fixed {
+      /* we hide the header right above the viewport */
+      position: fixed;
+      top: -77px;
+      -webkit-transition: -webkit-transform 0.2s;
+      -moz-transition: -moz-transform 0.2s;
+      transition: transform 0.2s;
+      border-bottom: 1px solid darken(white, 0.05);
+      background-color: fade-out(white, 0.1);
+      .navbar-brand {
+        color: $black;
+        &:focus,
+        &:hover {
+          color: $black;
+        }
+      }
+      .navbar-nav {
+        > li.nav-item {
+          > a {
+            color: $black;
+            &:focus,
+            &:hover {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+    &.is-visible {
+      /* we show the header */
+      -webkit-transform: translate3d(0, 100%, 0);
+      -moz-transform: translate3d(0, 100%, 0);
+      -ms-transform: translate3d(0, 100%, 0);
+      -o-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+
+  .search-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    background: $white;
+    z-index: 9999;
+    border-radius: 0;
+    display: none;
+    .dismiss {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5em;
+      color: $black;
+    }
+    form {
+      height: 100%;
+    }
+    form input {
+      height: 100%;
+      border: none;
+      padding: 20px;
+    }
+  }
+  #search {
+  }
+}

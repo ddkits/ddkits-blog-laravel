@@ -1,0 +1,28 @@
+// Variables
+
+// Gray and Brand Colors for use across theme
+$white: #ffffff;
+$black: #404040;
+$theme-primary: $black;
+$main-g: $theme-primary;
+$main: $black;
+
+$main-gx: $theme-primary;
+
+$gray-base: #000 !default;
+$gray-darker: lighten($gray-base, 13.5%) !default;
+$gray-dark: lighten($gray-base, 20%) !default;
+$gray: lighten($gray-base, 33.5%) !default;
+$gray-light: lighten($gray-base, 46.7%) !default;
+$gray-lighter: lighten($gray-base, 93.5%) !default;
+
+// fonts
+
+$main-font: serif, Arial, Futura, cursive;
+$main-font-size: 22px;
+$main-font-base-size: 14px;
+$header-font-size: 32px;
+
+$desktop: 992px;
+$tablet: 770px;
+$mobile: 260px;

@@ -1,0 +1,3 @@
+Sitemap: https://home.reallexi.com/sitemap
+User-agent:*
+Disallow: /admin/

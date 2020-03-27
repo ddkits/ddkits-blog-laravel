@@ -1,0 +1,60 @@
+// Styling for the post page
+.post-preview {
+  &:hover {
+    cursor: pointer;
+    cursor: hand;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    margin-top: -5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .backcover {
+    background: $white;
+    filter: alpha(opacity=70);
+    /* IE */
+    -moz-opacity: 0.7;
+    /* Mozilla */
+    opacity: 0.7;
+  }
+  > a {
+    color: $gray-dark;
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: $theme-primary;
+    }
+    > .post-title {
+      font-size: 30px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    > .post-subtitle {
+      font-weight: 300;
+      margin: 0 0 10px;
+    }
+  }
+  > .post-meta {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+    color: $gray-light;
+    > a {
+      text-decoration: none;
+      color: $gray-dark;
+      &:focus,
+      &:hover {
+        text-decoration: underline;
+        color: $theme-primary;
+      }
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    > a {
+      > .post-title {
+        font-size: 36px;
+      }
+    }
+  }
+}

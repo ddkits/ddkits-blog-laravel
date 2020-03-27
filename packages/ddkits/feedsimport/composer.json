@@ -1,0 +1,12 @@
+{
+    "name": "ddkits/feedsimport",
+    "description": "Feeds import is a package for Laravel 5.x",
+    "authors": [
+        {
+            "name": "Sam Elayyoub",
+            "email": "melayyoub@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

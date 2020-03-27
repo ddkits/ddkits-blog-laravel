@@ -1,0 +1,118 @@
+// Global styling for this template
+body {
+  font-size: 16px;
+  color: $white;
+  background: $white;
+  font-family: $main-font;
+  -moz-selection-webkit-box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8) inset, 1px 1px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8) inset, 1px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8) inset, 1px 1px 3px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.container {
+  color: $black;
+}
+
+p {
+  line-height: 1.5;
+  margin: 30px 0;
+  a {
+    text-decoration: underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  font-family: $main-font;
+}
+
+a {
+  color: $gray-dark;
+  @include transition-all;
+  &:focus,
+  &:hover {
+    color: $theme-primary;
+  }
+}
+
+a img {
+  &:focus,
+  &:hover {
+    cursor: zoom-in;
+  }
+}
+
+blockquote {
+  font-style: italic;
+  color: $gray-light;
+}
+
+.section-heading {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: $main-font;
+  margin-top: 60px;
+}
+
+.caption {
+  font-size: 14px;
+  font-style: italic;
+  display: block;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+// align center force
+.center {
+  text-align: center !important;
+  align-items: center !important;
+}
+
+::-moz-selection {
+  color: white;
+  background: $theme-primary;
+  text-shadow: none;
+}
+
+::selection {
+  color: white;
+  background: $theme-primary;
+  text-shadow: none;
+}
+
+img::selection {
+  color: white;
+  background: transparent;
+}
+
+img::-moz-selection {
+  color: white;
+  background: transparent;
+}
+
+body {
+  -webkit-tap-highlight-color: $theme-primary;
+}
+
+.blur {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+
+  -webkit-transition: all 5s linear;
+  transition: all 5s linear;
+  -moz-transition: all 5s linear;
+  -webkit-transition: all 5s linear;
+  -o-transition: all 5s linear;
+}
