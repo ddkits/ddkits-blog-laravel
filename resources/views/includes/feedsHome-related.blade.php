@@ -8,7 +8,7 @@
     $sli = ($splice)?? 0;
 @endphp
 <!-- show all after last row  -->
-@foreach ($feedsCont->getSourceNews($source, $random)->paginate($howMany)->splice($sli) as $post)
+@foreach ($feedsCont->getFeedsHomeNews('all')->paginate($howMany)->splice($sli) as $post)
 @php
     $last_id = $post->id;
     $last_date = $post->created_at;

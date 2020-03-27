@@ -27,6 +27,9 @@
 
 
 @section('content')
+@php
+  $date = '';
+  @endphp
 <!-- Main Content -->
     <section class="ddkits-blog-home">
       <div class="container items-center col-md-11 col-sx-11">
@@ -43,7 +46,6 @@
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>
                           </div>
-
                         </div>
                         <div class="whytopost-blog-home">
                          <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
@@ -53,11 +55,13 @@
                         </div>
                       </a>
              </div>
+             @php
+            $date=$post->created_at;
+           @endphp
           @endforeach
-
           <!-- show only on -->
           @foreach($feedsCont->getHomeNews(false, false)->paginate(2)->splice(1) as $post)
-                <div class="ddkits-blog-content col-md-4 col-sx-4">
+                <div class="ddkits-blog-content col-md-4 ">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
@@ -66,7 +70,6 @@
                           <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
-
                         </div>
                         <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
@@ -76,11 +79,18 @@
                         </div>
                       </a>
              </div>
+             @php
+            $date=$post->created_at;
+           @endphp
           @endforeach
-
+          <div class="ddkits-blog-content col-md-4 ">
+                      <div class="black fondo-ddkits-home">
+                        @include('includes.google-ad')
+                      </div>
+                  </div>
           <!-- show all after first tow  -->
-            @foreach($feedsCont->getHomeNews(false, false)->paginate(5)->splice(2) as $post)
-                <div class="ddkits-blog-content col-md-4 col-sx-4">
+            @foreach($feedsCont->getHomeNews(false, false)->paginate(4)->splice(2) as $post)
+                <div class="ddkits-blog-content col-md-4 ">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
@@ -89,7 +99,6 @@
                           <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
-
                         </div>
                         <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
@@ -99,10 +108,13 @@
                         </div>
                       </a>
              </div>
+             @php
+            $date=$post->created_at;
+           @endphp
           @endforeach
           <!-- show all after last row  -->
-            @foreach($feedsCont->getHomeNews(false, false)->paginate(6)->splice(5) as $post)
-                <div class="ddkits-blog-content col-md-4 col-sx-4">
+            @foreach($feedsCont->getHomeNews(false, false)->paginate(5)->splice(4) as $post)
+                <div class="ddkits-blog-content col-md-4 ">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
@@ -111,10 +123,8 @@
                           <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 120, 'yes') }}</p></div>
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
-
                         </div>
                         <div class="whytopost-blog-home">
-
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
@@ -122,10 +132,12 @@
                         </div>
                       </a>
              </div>
+             @php
+            $date=$post->created_at;
+           @endphp
           @endforeach
-
              <!-- show all after last row  -->
-            @foreach($feedsCont->getHomeNews(false, false)->paginate(7)->splice(6) as $post)
+            @foreach($feedsCont->getHomeNews(false, false)->paginate(6)->splice(5) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6">
@@ -134,9 +146,7 @@
                           <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
                           <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
-                          <div class="author"><p>By: {{ $post->author }}</p>                          </div>
-
-                        </div>
+                          <div class="author"><p>By: {{ $post->author }}</p>             </div></div>
                         <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
@@ -144,12 +154,19 @@
                            @endforeach
                         </div>
                       </a>
-             </div>
+               </div>
+             @php
+            $date=$post->created_at;
+           @endphp
           @endforeach
-
+                <div class="ddkits-blog-content col-md-4 ">
+                      <div class="black fondo-ddkits-home">
+                        @include('includes.google-ad')
+                      </div>
+                  </div>
           <!-- show all after first tow  -->
-          @foreach($feedsCont->getHomeNews(false, false)->paginate(16)->splice(7) as $post)
-              <div class="ddkits-blog-content col-md-4 col-sx-4">
+          @foreach($feedsCont->getHomeNews(false, false)->paginate(13)->splice(6) as $post)
+              <div class="ddkits-blog-content col-md-4 ">
                       <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                       <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                         <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
@@ -167,28 +184,33 @@
                       </div>
                     </a>
            </div>
+           @php
+            $date=$post->created_at;
+           @endphp
         @endforeach
+        <div class="ddkits-blog-content col-md-4 ">
+                      <div class="black fondo-ddkits-home">
+                        @include('includes.google-ad')
+                      </div>
+                  </div>
         </div>
       </div>
   </section>
-    @include('includes.google-ad')
   <section  class="ddkits-blog-home-recent">
       <div class="container items-center col-md-11 col-sx-11">
         <div class="row">
            <!-- show all after last row  -->
-           @include('includes.feeds-related', [
+           @include('includes.feedsHome-related', [
                'howMany' => 26,
                'random' => false,
                'showMore' => 1,
-               'source' => false,
-               'splice'=> 16
+               'date' => $date,
+               'source' => 'all',
+               'splice'=> 13
                ])
           @include('includes.google-ad')
-
           </div>
       </div>
-
-          @include('includes.google-ad')
   </section>
 <script>
   function clearMouse() {

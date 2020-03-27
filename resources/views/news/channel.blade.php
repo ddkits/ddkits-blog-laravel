@@ -90,7 +90,7 @@
           @endforeach
 
           <!-- show all after first row  -->
-            @foreach($feedsCont->getSourceNews($source)->paginate(5)->splice(2) as $post)
+            @foreach($feedsCont->getSourceNews($source)->paginate(4)->splice(2) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
@@ -116,9 +116,13 @@
                       </a>
              </div>
           @endforeach
-
+<div class="ddkits-blog-content col-md-4 ">
+                      <div class="black fondo-ddkits-home">
+                        @include('includes.google-ad')
+                      </div>
+                  </div>
           <!-- show all after last row  -->
-            @foreach($feedsCont->getSourceNews($source)->paginate(6)->splice(5) as $post)
+            @foreach($feedsCont->getSourceNews($source)->paginate(5)->splice(4) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
@@ -142,7 +146,7 @@
           @endforeach
 
              <!-- show all after last row  -->
-            @foreach($feedsCont->getSourceNews($source)->paginate(7)->splice(6) as $post)
+            @foreach($feedsCont->getSourceNews($source)->paginate(6)->splice(5) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
                         <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                         <div class="img-ddkits-principal-home col-md-6">
@@ -163,9 +167,13 @@
                       </a>
              </div>
           @endforeach
-          @include('includes.google-ad')
+          <div class="ddkits-blog-content col-md-4 ">
+                      <div class="black fondo-ddkits-home">
+                        @include('includes.google-ad')
+                      </div>
+                  </div>
           <!-- show all after first tow  -->
-          @foreach($feedsCont->getSourceNews($source)->paginate(16)->splice(7) as $post)
+          @foreach($feedsCont->getSourceNews($source)->paginate(13)->splice(6) as $post)
               <div class="ddkits-blog-content col-md-4 col-sx-4">
                       <a href="{{ route('feeds.showPage', $post->path) }}" class="black fondo-ddkits-home">
                       <div class="img-ddkits-principal-home col-md-6 col-sx-6">
@@ -186,6 +194,11 @@
                     </a>
            </div>
         @endforeach
+        <div class="ddkits-blog-content col-md-4 ">
+                      <div class="black fondo-ddkits-home">
+                        @include('includes.google-ad')
+                      </div>
+                  </div>
         </div>
       </div>
   </section>
@@ -195,10 +208,10 @@
         <div class="row">
            <!-- show all after last row  -->
            @include('includes.feeds-related', [
-               'howMany' => 20,
+               'howMany' => 19,
                'random' => false,
                'showMore' => 1,
-               'splice'=> 16,
+               'splice'=> 13,
                'source'=> $source
                ])
           @include('includes.google-ad')

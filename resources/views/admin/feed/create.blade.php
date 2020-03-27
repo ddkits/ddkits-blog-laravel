@@ -40,7 +40,8 @@
               </div>
             </div>
             {{ Form::label('feed_url', 'feed url:', array('class' => 'col-md-12')) }} {{ Form::textarea('feed_url', null, array('class' => 'form-control col-md-12')) }}
-            {{ Form::label('youtube', 'Youtube Channel: ex. UCQlltBK46W42R1OQpWk917A', array('class' => 'col-md-12')) }} {{ Form::textarea('youtube', null, array('class' => 'form-control col-md-12')) }}
+            {{ Form::label('youtube', 'Youtube Channel: ex. UCQlltBK46W42R1OQpWk917A', array('class' => 'col-md-12')) }} {{ Form::text('youtube', null, array('class' => 'form-control col-md-12')) }}
+            {{ Form::label('youtubeuser', 'Youtube User: ex. ddkits', array('class' => 'col-md-12')) }} {{ Form::text('youtubeuser', null, array('class' => 'form-control col-md-12')) }}
           </div>
         </div>
       </div>

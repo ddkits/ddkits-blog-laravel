@@ -62,22 +62,25 @@ class FeedsCont extends Controller
     public function getHomefeeds(Request $request)
     {
         $id = ($request->id) ?: 0;
-        $source = ($request->source) ?: '';
+        $source = ($request->source) ?: false;
+        $date = ($request->date) ?: false;
+        $response['code'] = 200;
+        $response['message'] = $date;
         // create a variable and store in it from the database
         $feeds = DB::table('feeds')
-            ->where('id', '<', $id);
-        if ($source != '') {
+            ->where('created_at', '<', $date);
+        if ($source !== 'all') {
             $feeds->where('source', 'like', $source . '%');
         }
-        $feeds->orderBy('id', 'DESC')->limit(18)->get();
+        $feeds->orderBy('created_at', 'DESC')->limit(18);
         $data = '';
         $count = 0;
-        foreach ($feeds as $post) {
+        foreach ($feeds->get() as $post) {
             $last_id = $post->id;
             $count++;
             $data .= '<a href="' . route("feeds.showPage", $post->path) . '" class="black fondo-ddkits-home  col-md-6" data-id="' . $last_id . '" >
             <div class="ddkits-blog-content-home col-md-11 col-sx-11" >
-            <div class="img-ddkits-principal-home col-sx-4 col-md-2 ">';
+            <div class="img-ddkits-principal-home">';
             if (strpos($post->image, 'http') !== true) {
                 $data .= '<img class="ddkits" src="/' . $post->image . '" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="' . $post->title . '">';
             } else {
@@ -86,24 +89,24 @@ class FeedsCont extends Controller
             $data .= '</div>
             <div class="whytopost-ddkits-principal-home">
             <div class=" col-md-12">' . $this->encoded($post->title, 0, 50, "yes") .  '<div class="small">' . date('M/d/Y', strtotime($post->created_at)) . '</div></div>
-            <div class="author col-md-2 col-xs-2">
+            <div class="author">
             </div>
             </div>
             </div>
             </a>';
+            $dataNow = $post->created_at;
         }
-        if ($count < 6) {
-            # code...
+        if ($count < 18) {
+            //
         } else {
             $data .= '<div id="post_data" class="col-md-12"></div>
         <div id="load_more" class="align-text-center align-items-center col-md-12">
-        <button type="button" name="load_more_button" class="btn form-control" data-id="' . $last_id . '" id="load_more_button">Load More News</button>
+        <button type="button" name="load_more_button" class="btn form-control" data-id="' . $last_id . '" data-source="' . $source . '" data-date="' . $dataNow . '" id="load_more_button">Load More News</button>
         </div>';
         }
-
-
         echo $data;
-    }
+}
+
     /**
      * Display a listing of the resource.
      *
@@ -120,6 +123,30 @@ class FeedsCont extends Controller
         }
         if ($random) {
             $feeds->inRandomOrder();
+        } else {
+            $feeds->orderBy('created_at', 'DESC');
+        }
+        foreach ($feeds as $feed => $item) {
+            if ($feed == 'image') {
+                if (strpos($item, 'http') !== true) {
+                    $feeds[$feed] = '/' . $feed->image;
+                }
+            }
+        }
+        return $feeds;
+    }
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getFeedsHomeNews($id = false, $date = false, $random = false)
+    {
+        // create a variable and store in it from the database
+        $feeds = DB::table('feeds');
+
+        if ($date and $date != 0) {
+            $feeds->where('created_at', '<', $date);
         } else {
             $feeds->orderBy('created_at', 'DESC');
         }
@@ -287,6 +314,8 @@ class FeedsCont extends Controller
         $feedslist->title = $request->title;
         if (!empty($request->youtube)) {
             $feedslist->feed_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . (string) $request->youtube;
+        } else if (!empty($request->youtubeuser)) {
+            $feedslist->feed_url = 'https://www.youtube.com/feeds/videos.xml?user=' . (string) $request->youtubeuser;
         } else {
             $feedslist->feed_url = $request->feed_url;
         }
@@ -668,9 +697,11 @@ class FeedsCont extends Controller
      */
     public function feedsSyncDirect($id)
     {
-        $url = FeedsList::find($id)->feed_url;
-        $tags = FeedsList::find($id)->tags;
-        $categories = FeedsList::find($id)->categories;
+        $item = FeedsList::find($id);
+        $url = $item->feed_url;
+        $tags = $item->tags;
+        $categories = $item->categories;
+        $title = $item->title;
         $source_id = (int) $id;
         if (strpos($url, 'youtube')) {
             $result = $this->syncVideoFeed($url);
@@ -682,9 +713,9 @@ class FeedsCont extends Controller
             Session::flash('Success', 'Synced successfully');
             // redirect
             if (strpos($url, 'youtube')) {
-                return $this->createNewVideoFeeds($result, $tags, $categories, $source_id);
+                return $this->createNewVideoFeeds($result, $tags, $categories, $source_id, $title);
             } else {
-                return $this->createNewFeeds($result, $tags, $categories, $source_id);
+                return $this->createNewFeeds($result, $tags, $categories, $source_id, $title);
             }
         } else {
             Session::flash('Error', 'Synced not correct');
@@ -700,9 +731,11 @@ class FeedsCont extends Controller
     public function feedsSync(Request $request)
     {
         $id = (int) $request->id;
-        $url = FeedsList::find($id)->feed_url;
-        $tags = FeedsList::find($id)->tags;
-        $categories = FeedsList::find($id)->categories;
+        $item = FeedsList::find($id);
+        $url = $item->feed_url;
+        $tags = $item->tags;
+        $title = $item->title;
+        $categories = $item->categories;
         $source_id = (int) $request->id;
         if (strpos($url, 'youtube')) {
             $result = $this->syncVideoFeed($url);
@@ -713,9 +746,9 @@ class FeedsCont extends Controller
             Session::flash('Success', 'Synced successfully');
             // redirect
             if (strpos($url, 'youtube')) {
-                return $this->createNewVideoFeeds($result, $tags, $categories, $source_id);
+                return $this->createNewVideoFeeds($result, $tags, $categories, $source_id, $title);
             } else {
-                return $this->createNewFeeds($result, $tags, $categories, $source_id);
+                return $this->createNewFeeds($result, $tags, $categories, $source_id, $title);
             }
         } else {
             Session::flash('Error', 'Synced not correct');
@@ -730,7 +763,7 @@ class FeedsCont extends Controller
      * @param  array  $results
      * @return \Illuminate\Http\Response
      */
-    public function createNewFeeds($results, $tags, $categories, $source_id)
+    public function createNewFeeds($results, $tags, $categories, $source_id, $title)
     {
         $channel = $results->channel->item;
         $author = 'author';
@@ -785,7 +818,7 @@ class FeedsCont extends Controller
                 } else {
                     $feed->body =  $e_description;
                 }
-                $feed->source = (string) $results->channel->title;
+                $feed->source = (string) $title;
                 $feed->path = $slug;
                 $feed->tags = $tags;
 
@@ -837,7 +870,7 @@ class FeedsCont extends Controller
      * @param  array  $results
      * @return \Illuminate\Http\Response
      */
-    public function createNewVideoFeeds($results, $tags, $categories, $source_id)
+    public function createNewVideoFeeds($results, $tags, $categories, $source_id, $title)
     {
         $channel = $results->title;
         $count = count($results->entry);
@@ -857,7 +890,7 @@ class FeedsCont extends Controller
                 $feed->author = $item->author->name;
                 $bodyUpdate = '';
                 $bodyUpdate .= '<p><iframe class="center" width="500px" height="300px" src="https://www.youtube.com/embed/' . $video . '" frameborder="0" allowfullscreen></iframe></p><br>';
-                $feed->source = $channel;
+                $feed->source = $title;
                 $feed->source_id = $source_id;
                 // get the image
                 $thumbUrl = $item->children('media', True)->group->children('media', True)->thumbnail->attributes();
@@ -922,7 +955,7 @@ class FeedsCont extends Controller
      */
     public function feedsChannelTitle($slug = false)
     {
-        $results = Feeds::where('source', 'like', $slug . '%');
+        $results = Feeds::where('source', 'like', $slug . '%')->orderBy('created_at', 'DESC');
         return view('news.channel')->with([
             'news' => $results,
             'source' => $slug
