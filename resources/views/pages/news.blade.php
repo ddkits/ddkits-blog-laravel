@@ -47,12 +47,12 @@
                           <div class="author"><p>By: {{ $post->author }}</p>
                           </div>
                         </div>
-                        <div class="whytopost-blog-home">
+                        {{--  <div class="whytopost-blog-home">
                          <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>
+                        </div>  --}}
                       </a>
              </div>
              @php
@@ -71,12 +71,12 @@
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
                         </div>
-                        <div class="whytopost-blog-home">
+                        {{--  <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>
+                        </div>  --}}
                       </a>
              </div>
              @php
@@ -100,12 +100,12 @@
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
                         </div>
-                        <div class="whytopost-blog-home">
+                        {{--  <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>
+                        </div>  --}}
                       </a>
              </div>
              @php
@@ -124,12 +124,12 @@
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
                         </div>
-                        <div class="whytopost-blog-home">
+                        {{--  <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>
+                        </div>  --}}
                       </a>
              </div>
              @php
@@ -147,12 +147,12 @@
                           <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>             </div></div>
-                        <div class="whytopost-blog-home">
+                        {{--  <div class="whytopost-blog-home">
                           <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>
+                        </div>  --}}
                       </a>
                </div>
              @php
@@ -176,12 +176,12 @@
                         <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                         <div class="author"><p>By: {{ $post->author }}</p></div>
                       </div>
-                      <div class="whytopost-blog-home">
+                      {{--  <div class="whytopost-blog-home">
                         <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
                         @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                             "{{ $cat }}"
                          @endforeach
-                      </div>
+                      </div>  --}}
                     </a>
            </div>
            @php
