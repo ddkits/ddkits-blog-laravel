@@ -19,7 +19,7 @@
         <img class="ddkits" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="{{$post->title}}">
 </div>
 <div class="whytopost-ddkits-principal-home">
-<div>{{ $getInfo->encoded($post->title, 0, 50, 'yes') }} <div class="small">{{ date('M/d/Y', strtotime($post->created_at)) }}</div> </div>
+<div>{{ $getInfo->encoded(str_replace('&amp;', '', $post->title), 0, 50, 'yes') }} <div class="small">{{ date('M/d/Y', strtotime($post->created_at)) }}</div> </div>
 <div class="author col-md-2 col-xs-2">
 </div>
 </div>

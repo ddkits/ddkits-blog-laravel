@@ -5,15 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\admin;
-use App\postTags;
 use App\Post;
 use App\usersAdmin;
-use App\postCategories;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
@@ -21,11 +15,9 @@ class AdminCont extends Controller
 {
     /**
      * Admin or not resource.
-     *
      */
     public function getAdmin($id = false)
     {
-
         $userId = $id;
         // admin or not
         $admin = 0;
@@ -36,13 +28,12 @@ class AdminCont extends Controller
 
         return $admin;
     }
+
     /**
      * Admin or not resource.
-     *
      */
     public function getAdminLevel()
     {
-
         $userId = Auth::user()->id;
         // admin or not
         $level = 99;
@@ -53,23 +44,24 @@ class AdminCont extends Controller
 
         return $level;
     }
+
     /**
      * Admin or not resource.
-     *
      */
     public function adminInfo($id)
     {
         $info = DB::table('admins')->where('uid', $id)->first();
+
         return $info;
     }
 
     /**
      * Admin or not resource.
-     *
      */
     public function homeMainMenu()
     {
         $info = DB::table('menus')->where('menu', 'homemainmenu')->orderBy('id', 'desc');
+
         return $info;
     }
 
@@ -81,6 +73,7 @@ class AdminCont extends Controller
     public function index()
     {
         $adminSettings = DB::table('settings')->get();
+
         return view('admin.index')->with([
             'settings' => $adminSettings,
         ]);
@@ -162,6 +155,7 @@ class AdminCont extends Controller
         $adminSettings = DB::table('settings')->get();
         $adminUsers = DB::table('users');
         $adminPosts = DB::table('posts');
+
         return view('admin.posts')->with([
             'settings' => $adminSettings,
             'adminUsers' => $adminUsers,
@@ -184,12 +178,11 @@ class AdminCont extends Controller
             'settings' => $adminSettings,
             'adminUsers' => $adminUsers,
             'adminProPosts' => $adminProPosts,
-
         ]);
     }
 
-
     // Storing functions for admins below
+
     /**
      * Display a listing of the resource.
      *
@@ -212,7 +205,6 @@ class AdminCont extends Controller
     {
         $adminSettings = DB::table('settings')->get();
         $comments = DB::table('comments');
-
 
         return redirect()->back();
     }
@@ -239,45 +231,41 @@ class AdminCont extends Controller
     {
         if ($request) :
             $list = $request->user;
-            foreach ($list as $user) {
-                $saveUser = User::find($user['id']);
+        foreach ($list as $user) {
+            $saveUser = User::find($user['id']);
 
-                // save users
-                if ($saveUser) {
-                    $saveUser->email = $user['email'];
-                    $saveUser->username = $user['username'];
-                    $saveUser->blocked = $user['blocked'];
-                    $saveUser->save();
+            // save users
+            if ($saveUser) {
+                $saveUser->email = $user['email'];
+                $saveUser->username = $user['username'];
+                $saveUser->blocked = $user['blocked'];
+                $saveUser->save();
 
-
-
-                    // check admins
-                    if ($user['admin'] == 1) {
-
-                        $admin = DB::table('admins')->where('uid', $user['id'])->first();
-                        if (!$admin) {
-                            $createAdmin = new usersAdmin;
-                            $createAdmin->uid = $user['id'];
-                            $createAdmin->level = 1;
-                            $createAdmin->save();
-                            Session::flash('Success', 'New Admin created.');
-                        }
-                    } else {
-                        $admin = DB::table('admins')->where('uid', $user['id'])->first();
-
-                        if ($admin) {
-                            $deleteAdmin = DB::table('admins')->where([
-                                'uid' => $user['id']
-                            ])->delete();
-                        }
+                // check admins
+                if ($user['admin'] == 1) {
+                    $admin = DB::table('admins')->where('uid', $user['id'])->first();
+                    if (!$admin) {
+                        $createAdmin = new usersAdmin();
+                        $createAdmin->uid = $user['id'];
+                        $createAdmin->level = 1;
+                        $createAdmin->save();
+                        Session::flash('Success', 'New Admin created.');
                     }
+                } else {
+                    $admin = DB::table('admins')->where('uid', $user['id'])->first();
 
-                    // end if User exist
+                    if ($admin) {
+                        $deleteAdmin = DB::table('admins')->where([
+                                'uid' => $user['id'],
+                            ])->delete();
+                    }
                 }
-            }
-            Session::flash('Success', 'Settings Saved Successfully!');
-        endif;
 
+                // end if User exist
+            }
+        }
+        Session::flash('Success', 'Settings Saved Successfully!');
+        endif;
 
         return redirect()->back();
     }
@@ -296,6 +284,7 @@ class AdminCont extends Controller
             $post->save();
         }
         Session::flash('Success', 'Saved Successfully!');
+
         return redirect()->back();
     }
 
@@ -309,10 +298,9 @@ class AdminCont extends Controller
         $adminSettings = DB::table('settings')->get();
         $adminUsers = DB::table('users');
         $adminProPosts = DB::table('pro_posts');
+
         return redirect()->back();
     }
-
-
 
     /**
      * Display a listing of the resource.
@@ -326,6 +314,7 @@ class AdminCont extends Controller
             return  $adminSettings->value;
         }
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -333,48 +322,50 @@ class AdminCont extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $getConfig = admin::find($id);
+
         return $getConfig;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -386,14 +377,16 @@ class AdminCont extends Controller
         $proPost->save();
 
         Session::flash('Success', 'Post Shared');
+
         return redirect()->back();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     protected function createSettings(Request $request)
@@ -405,6 +398,7 @@ class AdminCont extends Controller
         $check = DB::table('settings')->where('field_name', 'like', $request->field_name)->first();
         if ($check) {
             Session::flash('Success', 'This field already exist.');
+
             return redirect()->back();
         }
         DB::table('settings')->insert([
@@ -414,17 +408,18 @@ class AdminCont extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
             'uid' => $request->uid,
         ]);
+
         return redirect()->back();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      */
     public function pathUpdate()
     {
-        $posts = DB::table('posts')->where('path', NULL)->get();
+        $posts = DB::table('posts')->where('path', null)->get();
         foreach ($posts as $key) {
             $slug = $this->create_slug($key->title);
             DB::table('posts')->where('title', $key->title)
@@ -434,13 +429,16 @@ class AdminCont extends Controller
         }
 
         Session::flash('Success', 'All paths updated.');
+
         return redirect()->back();
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     protected function storeSettings(Request $request)
@@ -488,19 +486,21 @@ class AdminCont extends Controller
         }
 
         Session::flash('Success', 'Settings Saved Successfully!');
+
         return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
     }
+
     // the function below to encode any html content and trim
     public function encoded($string, $param, $param2, $filter = 'no')
     {
@@ -512,9 +512,10 @@ class AdminCont extends Controller
         $s = htmlspecialchars_decode(html_entity_decode($fin));
         $sub = substr($s, $param, $param2);
         $before = htmlentities($sub);
-        $dots = strlen($string) > $param ? "..." : "";
+        $dots = strlen($string) > $param ? '...' : '';
+        $before1 = preg_replace('/&#?[a-z0-9]{2,8};/i', '', $before);
+        $final = $before1.' '.$dots;
 
-        $final = $before . ' ' . $dots;
         return $final;
     }
 
@@ -522,14 +523,12 @@ class AdminCont extends Controller
     public function encodeOnly($string)
     {
         $final = htmlspecialchars_decode(html_entity_decode($string));
+
         return $final;
     }
 
-
-
     public function create_slug($string = false)
     {
-
         // if no string
         if ($string == null) {
             return false;

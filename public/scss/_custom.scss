@@ -1,685 +1,691 @@
 // highlights-load
 #highlights-load {
-  min-height: 100px;
+    min-height: 100px;
 }
 img {
-  max-width: 100% !important;
+    max-width: 100% !important;
 }
 .ddkits-blog-home-recent {
-  background: url("") no-repeat fixed center center;
-  background-size: 100% auto;
-  background: $white !important;
-  z-index: -2;
-  height: auto !important;
-  padding: 20px;
-  a {
-    height: auto !important;
-    display: inline-block;
-    padding: 5px;
+    background: url("") no-repeat fixed center center;
+    background-size: 100% auto;
     background: $white !important;
-    border-bottom: 1px solid;
-    color: $black;
-    #titlesContent {
-      color: $black;
-      border: 1px solid $black;
-      padding: 5px;
-      z-index: 10;
-      border-bottom: 0.5px solid $gray;
-    }
-    .ddkits-blog-content-home {
-      min-height: 100px;
-      margin: 5px;
-      padding: 5px;
-      line-height: 100%;
-      color: $black;
-      font-size: $main-font-size !important;
-      font-family: $main-font !important;
-      color: $black !important;
-      img.ddkits {
-        opacity: 0.7;
-        left: 0;
-        padding: 0;
-        position: absolute;
-        width: 100%;
-        height: 100px;
-      }
-      .title {
-        text-transform: lowercase !important;
-        &:first-letter {
-          text-transform: uppercase;
-        }
-        padding-left: 2px !important;
-        font-size: $main-font-size !important;
-        font-family: $main-font !important;
-        color: $black !important;
-        z-index: 15;
-        width: 100%;
-      }
-      .body {
-        p {
-          text-transform: lowercase;
-          padding: 1px;
-          padding-left: 2px;
-          width: 100%;
-          z-index: 15;
-          font-size: $main-font-base-size !important;
-          font-family: $main-font !important;
-          color: $black;
-          &:first-letter {
-            text-transform: uppercase;
-          }
-        }
-      }
-      .author {
-        display: none;
-      }
-      .whytopost-ddkits-principal-home {
-        // width: 70% !important;
-      }
-    }
-
-    .fondo-ddkits-home {
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-      background: $white;
-      border-radius: 3px;
-      overflow: hidden;
-      height: 100px;
-      margin-bottom: 10px;
-      display: block;
-      color: inherit;
-      text-decoration: none;
-      position: relative;
-
-      &:hover {
-        h3 {
-          color: $black;
-          font-family: $main-font;
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-        }
-
-        .whytopost-blog-home {
-          height: 100px;
-          width: 100%;
-          color: $white;
-          font-family: $main-font;
-          position: absolute;
-          top: 0;
-          opacity: 0;
-          cursor: pointer;
-          cursor: hand;
-        }
-      }
-    }
-  }
-
-  .black {
-    background: $black;
-  }
-
-  .fondo-ddkits-home {
-    .img-ddkits-principal-home {
-      display: inline-block;
-      max-width: 30%;
-      overflow: hidden;
-      height: 100px;
-      z-index: inherit;
-      background: $black;
-      img {
-        opacity: 0.2;
-        width: 100%;
-      }
-    }
-
-    .whytopost-ddkits-principal-home {
-      vertical-align: middle;
-      height: auto;
-      z-index: inherit;
-      padding: 0 10px;
-      h3 {
-        font-weight: 900;
-        color: $white;
-        text-transform: uppercase;
-        font-size: 30px;
-        font-family: $main-font;
-      }
-
-      p {
-        color: $white;
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 110%;
-      }
-    }
-
-    .whytopost-ddkits-home {
-      padding: 0 10px;
-      height: auto;
-      h3 {
-        font-weight: 900;
-        font-size: 20px;
-        text-transform: uppercase;
-      }
-    }
-
-    .img-ddkits-home {
-      overflow: hidden;
-      max-height: 180px;
-    }
-  }
-}
-
-.ddkits-blog-home {
-  margin: 30px 0px;
-  background: url("") no-repeat fixed center center;
-  background-size: 100% auto;
-  background-color: $white;
-  z-index: 50;
-  h2 {
-    text-align: center;
-    font-weight: 300;
-    margin-bottom: 30px;
-    font-size: 44px;
-    margin-top: 70px;
-    font-family: $main-font;
-    b {
-      color: $main;
-    }
-  }
-  .ddkits-blog-content {
-    margin: 0;
-    min-width: 300px;
-    padding: 2px;
-    line-height: 120%;
-    img.ddkits {
-      opacity: 0.7;
-      left: 0;
-      padding: 0;
-      position: absolute;
-      border-image: $black;
-      border-image-slice: 1;
-    }
-    .title {
-      animation-duration: 2s;
-      animation-name: fadeAndScale;
-      text-transform: lowercase;
-      height: 110px;
-      padding-left: 5px;
-      font-size: $main-font-size !important;
-      font-family: $main-font;
-      color: $white;
-      &:first-letter {
-        text-transform: uppercase; /* Make the first letters uppercase      */
-      }
-    }
-    .body {
-      text-transform: lowercase;
-      padding: 1px;
-      padding-left: 5px;
-      font-size: $main-font-base-size;
-      font-family: $main-font;
-
-      &:first-letter {
-        text-transform: uppercase; /* Make the first letters uppercase      */
-      }
-    }
-    .author {
-      font-size: $main-font-base-size;
-      font-family: $main-font;
-
-      z-index: 10;
-    }
-    .whytopost-ddkits-principal-home {
-      background: $white;
-    }
-  }
-
-  .fondo-ddkits-home {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-    background: $white;
-    border-radius: 3px;
-    overflow: hidden;
-    height: 400px;
-    display: block;
-    color: inherit;
-    text-decoration: none;
-    position: relative;
-
-    &:hover {
-      h3 {
-        color: $main;
-        font-family: $main-font;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-      }
-
-      .whytopost-blog-home {
-        height: 100%;
-        width: 100%;
-        color: $white;
-        font-family: $main-font;
-        background-color: $black;
-        position: absolute;
-        top: 0;
-        opacity: 0.7;
-        cursor: pointer;
-        cursor: hand;
-        &:hover {
-          cursor: pointer;
-          cursor: hand;
-        }
-      }
-    }
-  }
-
-  .black {
-    background: $black;
-  }
-
-  .fondo-ddkits-home {
-    .img-ddkits-principal-home {
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      background: $black;
-      padding: 0;
-      img {
-        opacity: 0.7;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .whytopost-ddkits-principal-home {
-      display: inline-block;
-      vertical-align: top;
-      height: 100%;
-      background: $white;
-      color: $black;
-      padding: 15px;
-      h3,
-      .title {
-        height: auto;
-        font-size: auto !important;
-        text-transform: lowercase !important;
-        &:first-letter {
-          text-transform: uppercase;
-        }
-        padding-left: 2px !important;
-        line-height: 100%;
-        font-size: $header-font-size;
-        font-family: $main-font !important;
-        color: $black !important;
-        z-index: 15;
-        width: 100%;
-      }
-
-      p {
+    z-index: -2;
+    height: auto !important;
+    padding: 20px;
+    a {
+        height: auto !important;
+        display: inline-block;
+        padding: 5px;
+        background: $white !important;
+        border-bottom: 1px solid;
         color: $black;
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 110%;
-      }
-    }
-
-    .whytopost-ddkits-home {
-      padding: 0 10px;
-      height: auto;
-      h3 {
-        font-weight: 900;
-        font-size: 20px;
-        text-transform: uppercase;
-      }
-    }
-
-    .img-ddkits-home {
-      overflow: hidden;
-      height: 100px;
-    }
-  }
-}
-
-.whytopost-blog-home {
-  height: 100%;
-  width: 0%;
-  color: $white !important;
-  background: $black;
-  position: absolute;
-  top: 0;
-  opacity: 0;
-  -webkit-transition: all 0.4s ease-out 0s;
-  -o-transition: all 0.4s ease-out 0s;
-  transition: all 0.4s ease-out 0s;
-  text-align: center;
-  padding-top: 180px;
-  span {
-    text-align: center;
-    max-height: 400px;
-    border: 1px solid $white;
-    display: inline-block;
-    padding: 10px 30px;
-    border-radius: 3px;
-    color: $white;
-    font-weight: 900;
-    font-size: 16px;
-  }
-}
-
-.todas-las-ddkits-home {
-  background: $main;
-  height: 400px;
-  width: 100%;
-  display: inline-block;
-  padding: 20px;
-  text-decoration: none;
-  border-radius: 3px;
-
-  span {
-    color: $white;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 25px;
-    line-height: 26px;
-  }
-}
-
-@media (max-width: $tablet) {
-  .ddkits-blog-content {
-    input {
-      display: inline-block;
-      width: 100%;
-    }
-    display: inline-block;
-    width: 100%;
-  }
-  .whytopost-blog-home {
-    display: none;
-  }
-}
-
-@media (max-width: $desktop) {
-  .whytopost-ddkits-principal {
-    min-width: 100%;
-    padding: 10px;
-    background: transparent;
-  }
-
-  .ddkits-blog-home {
-    background: transparent;
-    h2 {
-      text-align: center;
-      font-weight: 300;
-      margin-bottom: 30px;
-      font-size: 20px;
-      margin-top: 70px;
-    }
-    p {
-      padding: 5px;
-      font-size: 14px;
-    }
-
-    .fondo-ddkits-home {
-      font-size: 11px;
-      .title {
-        height: auto;
-        width: 100%;
-        background: transparent;
-      }
-      .body {
-        height: 200px;
-        width: 100%;
-        background: transparent;
-      }
-    }
-  }
-  .ddkits-blog-home-recent {
-    background: transparent;
-    margin: 20px 0px;
-    width: 100% !important;
-    h2 {
-      text-align: center;
-      font-weight: 300;
-      font-size: 14px;
-      margin-top: 70px;
-      width: 100%;
-    }
-    p {
-      width: 100% !important;
-      padding: 5px;
-      font-size: 11px;
-    }
-
-    .fondo-ddkits-home {
-      line-height: 100%;
-      height: 70px;
-      width: 100% !important;
-      .title {
-        text-transform: none;
-        height: auto;
-        width: 100%;
-        background: transparent;
-        font-size: 11px;
-        z-index: 9;
-      }
-
-      .author {
-        height: 100%;
-        font-size: 8px !important;
-        padding-top: 0px !important;
-        margin-top: -20px !important;
-        opacity: 0.8;
-        position: absolute;
-        margin: -10px;
-        right: 0;
-        top: 0;
-        width: 40%;
-        z-index: 10;
-        p {
-          margin-top: 10%;
+        #titlesContent {
+            color: $black;
+            border: 1px solid $black;
+            padding: 5px;
+            z-index: 10;
+            border-bottom: 0.5px solid $gray;
         }
-      }
-      .categories {
-        display: none;
-      }
-    }
-  }
-  .whytopost-ddkits-principal-home,
-  .whytopost-ddkits-principal {
-    width: 100% !important;
-  }
-}
+        .ddkits-blog-content-home {
+            min-height: 200px;
+            margin: 5px;
+            padding: 5px;
+            line-height: 100%;
+            color: $black;
+            font-size: $main-font-size !important;
+            font-family: $main-font !important;
+            color: $black !important;
+            img.ddkits {
+                opacity: 0.7;
+                left: 0;
+                padding: 0;
+                position: absolute;
+                width: 100%;
+                height: 200px;
+            }
+            .title {
+                text-transform: lowercase !important;
+                &:first-letter {
+                    text-transform: uppercase;
+                }
+                padding-left: 2px !important;
+                font-size: $main-font-size !important;
+                font-family: $main-font !important;
+                color: $black !important;
+                z-index: 15;
+                width: 100%;
+            }
+            .body {
+                p {
+                    text-transform: lowercase;
+                    padding: 1px;
+                    padding-left: 2px;
+                    width: 100%;
+                    z-index: 15;
+                    font-size: $main-font-base-size !important;
+                    font-family: $main-font !important;
+                    color: $black;
+                    &:first-letter {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+            .author {
+                display: none;
+            }
+            .whytopost-ddkits-principal-home {
+                // width: 70% !important;
+            }
+        }
 
-@media (max-width: $tablet) {
-  .whytopost-ddkits-principal {
-    min-width: 100%;
-    padding: 10px;
-  }
-  .ddkits-blog-home-recent {
-    h2 {
-      text-align: center;
-      font-weight: 300;
-      margin-bottom: 30px;
-      font-size: 18px;
-      margin-top: 70px;
-    }
-    .fondo-ddkits-home {
-      .title {
-      }
-      .body {
-      }
-      .author {
-        height: 100%;
-        right: 0;
-        top: 0;
-      }
-      .whytopost-ddkits-principal-home,
-      .whytopost-ddkits-principal {
-        width: 100% !important;
-      }
-    }
-  }
-  .ddkits-blog-home {
-    h2 {
-      text-align: center;
-      font-weight: 300;
-      margin-bottom: 30px;
-      font-size: 24px;
-      margin-top: 70px;
-    }
-    p {
-      padding: 5px;
-      font-size: 14px;
-    }
+        .fondo-ddkits-home {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+                0 1px 2px 0 rgba(0, 0, 0, 0.19);
+            background: $white;
+            border-radius: 3px;
+            overflow: hidden;
+            height: 100px;
+            margin-bottom: 10px;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            position: relative;
 
-    .fondo-ddkits-home {
-      background: $white;
-      border-radius: 3px;
-      overflow: hidden;
-      height: inherit;
-      margin-bottom: 20px;
-      display: absolute;
-      color: $white;
-      text-decoration: none;
-      position: relative;
-      height: 300px;
+            &:hover {
+                h3 {
+                    color: $black;
+                    font-family: $main-font;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+                        0 1px 2px 0 rgba(0, 0, 0, 0.19);
+                }
 
-      .title {
-        height: 50px;
-        width: 100%;
-      }
-      .body {
-        height: 100px;
-        width: 100%;
-      }
-      .author {
-        height: 50px;
-        width: 100%;
-      }
-      .whytopost-ddkits-principal-home,
-      .whytopost-ddkits-principal {
-        width: 100% !important;
-      }
+                .whytopost-blog-home {
+                    height: 100px;
+                    width: 100%;
+                    color: $white;
+                    font-family: $main-font;
+                    position: absolute;
+                    top: 0;
+                    opacity: 0;
+                    cursor: pointer;
+                    cursor: hand;
+                }
+            }
+        }
     }
 
     .black {
-      background: $black;
+        background: $black;
     }
-    .img-ddkits-principal-home {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      opacity: 0.2;
-    }
-    .whytopost-ddkits-principal-home {
-      vertical-align: top;
-      color: $white;
-      width: 100%;
-      padding: 0 10px;
 
-      h3 {
+    .fondo-ddkits-home {
+        .img-ddkits-principal-home {
+            display: inline-block;
+            max-width: 30%;
+            overflow: hidden;
+            height: 200px;
+            z-index: inherit;
+            background: $black;
+            img {
+                opacity: 0.2;
+                width: 100%;
+            }
+        }
+
+        .whytopost-ddkits-principal-home {
+            vertical-align: middle;
+            height: auto;
+            z-index: inherit;
+            padding: 0 10px;
+            h3 {
+                font-weight: 900;
+                color: $white;
+                text-transform: uppercase;
+                font-size: 30px;
+                font-family: $main-font;
+            }
+
+            p {
+                color: $white;
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 110%;
+            }
+        }
+
+        .whytopost-ddkits-home {
+            padding: 0 10px;
+            height: auto;
+            h3 {
+                font-weight: 900;
+                font-size: 20px;
+                text-transform: uppercase;
+            }
+        }
+
+        .img-ddkits-home {
+            overflow: hidden;
+            max-height: 180px;
+        }
+    }
+}
+
+.ddkits-blog-home {
+    margin: 30px 0px;
+    background: url("") no-repeat fixed center center;
+    background-size: 100% auto;
+    background-color: $white;
+    z-index: 50;
+    h2 {
+        text-align: center;
+        font-weight: 300;
+        margin-bottom: 30px;
+        font-size: 44px;
+        margin-top: 70px;
+        font-family: $main-font;
+        b {
+            color: $main;
+        }
+    }
+    .ddkits-blog-content {
+        margin: 0;
+        min-width: 300px;
+        padding: 2px;
+        line-height: 120%;
+        img.ddkits {
+            opacity: 0.7;
+            left: 0;
+            padding: 0;
+            position: absolute;
+            border-image: $black;
+            border-image-slice: 1;
+        }
+        .title {
+            animation-duration: 2s;
+            animation-name: fadeAndScale;
+            text-transform: lowercase;
+            height: 110px;
+            padding-left: 5px;
+            font-size: $main-font-size !important;
+            font-family: $main-font;
+            color: $white;
+            &:first-letter {
+                text-transform: uppercase; /* Make the first letters uppercase      */
+            }
+        }
+        .body {
+            text-transform: lowercase;
+            padding: 1px;
+            padding-left: 5px;
+            font-size: $main-font-base-size;
+            font-family: $main-font;
+
+            &:first-letter {
+                text-transform: uppercase; /* Make the first letters uppercase      */
+            }
+        }
+        .author {
+            font-size: $main-font-base-size;
+            font-family: $main-font;
+
+            z-index: 10;
+        }
+        .whytopost-ddkits-principal-home {
+            background: $white;
+        }
+    }
+
+    .fondo-ddkits-home {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+            0 1px 2px 0 rgba(0, 0, 0, 0.19);
+        background: $white;
+        border-radius: 3px;
+        overflow: hidden;
+        height: 400px;
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        position: relative;
+
+        &:hover {
+            h3 {
+                color: $main;
+                font-family: $main-font;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+                    0 1px 2px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .whytopost-blog-home {
+                height: 100%;
+                width: 100%;
+                color: $white;
+                font-family: $main-font;
+                background-color: $black;
+                position: absolute;
+                top: 0;
+                opacity: 0.7;
+                cursor: pointer;
+                cursor: hand;
+                &:hover {
+                    cursor: pointer;
+                    cursor: hand;
+                }
+            }
+        }
+    }
+
+    .black {
+        background: $black;
+    }
+
+    .fondo-ddkits-home {
+        .img-ddkits-principal-home {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background: $black;
+            padding: 0;
+            img {
+                opacity: 0.7;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .whytopost-ddkits-principal-home {
+            display: inline-block;
+            vertical-align: top;
+            height: 100%;
+            background: $white;
+            color: $black;
+            padding: 15px;
+            h3,
+            .title {
+                height: auto;
+                font-size: auto !important;
+                text-transform: lowercase !important;
+                &:first-letter {
+                    text-transform: uppercase;
+                }
+                padding-left: 2px !important;
+                line-height: 100%;
+                font-size: $header-font-size;
+                font-family: $main-font !important;
+                color: $black !important;
+                z-index: 15;
+                width: 100%;
+            }
+
+            p {
+                color: $black;
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 110%;
+            }
+        }
+
+        .whytopost-ddkits-home {
+            padding: 0 10px;
+            height: auto;
+            h3 {
+                font-weight: 900;
+                font-size: 20px;
+                text-transform: uppercase;
+            }
+        }
+
+        .img-ddkits-home {
+            overflow: hidden;
+            height: 100px;
+        }
+    }
+}
+
+.whytopost-blog-home {
+    height: 100%;
+    width: 0%;
+    color: $white !important;
+    background: $black;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-out 0s;
+    -o-transition: all 0.4s ease-out 0s;
+    transition: all 0.4s ease-out 0s;
+    text-align: center;
+    padding-top: 180px;
+    span {
+        text-align: center;
+        max-height: 400px;
+        border: 1px solid $white;
+        display: inline-block;
+        padding: 10px 30px;
+        border-radius: 3px;
+        color: $white;
         font-weight: 900;
+        font-size: 16px;
+    }
+}
+
+.todas-las-ddkits-home {
+    background: $main;
+    height: 400px;
+    width: 100%;
+    display: inline-block;
+    padding: 20px;
+    text-decoration: none;
+    border-radius: 3px;
+
+    span {
         color: $white;
+        font-weight: 900;
         text-transform: uppercase;
-        font-size: 20px;
-        color: $white;
-      }
+        font-size: 25px;
+        line-height: 26px;
+    }
+}
 
-      p {
-        color: $white;
-        font-size: 14px;
-        font-weight: 400;
-      }
+@media (max-width: $tablet) {
+    .ddkits-blog-content {
+        input {
+            display: inline-block;
+            width: 100%;
+        }
+        display: inline-block;
+        width: 100%;
+    }
+    .whytopost-blog-home {
+        display: none;
+    }
+}
+
+@media (max-width: $desktop) {
+    .whytopost-ddkits-principal {
+        min-width: 100%;
+        padding: 10px;
+        background: transparent;
     }
 
-    .todas-las-ddkits-home {
-      background: $main;
-      height: 100%;
-      width: 100%;
-      display: inline-block;
-      padding: 20px;
-      text-decoration: none;
-      border-radius: 3px;
+    .ddkits-blog-home {
+        background: transparent;
+        h2 {
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 30px;
+            font-size: 20px;
+            margin-top: 70px;
+        }
+        p {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .fondo-ddkits-home {
+            font-size: 11px;
+            .title {
+                height: auto;
+                width: 100%;
+                background: transparent;
+            }
+            .body {
+                height: 200px;
+                width: 100%;
+                background: transparent;
+            }
+        }
     }
-  }
+    .ddkits-blog-home-recent {
+        background: transparent;
+        margin: 20px 0px;
+        width: 100% !important;
+        h2 {
+            text-align: center;
+            font-weight: 300;
+            font-size: 14px;
+            margin-top: 70px;
+            width: 100%;
+        }
+        p {
+            width: 100% !important;
+            padding: 5px;
+            font-size: 11px;
+        }
+
+        .fondo-ddkits-home {
+            line-height: 100%;
+            height: 70px;
+            width: 100% !important;
+            .title {
+                text-transform: none;
+                height: auto;
+                width: 100%;
+                background: transparent;
+                font-size: 11px;
+                z-index: 9;
+            }
+
+            .author {
+                height: 100%;
+                font-size: 8px !important;
+                padding-top: 0px !important;
+                margin-top: -20px !important;
+                opacity: 0.8;
+                position: absolute;
+                margin: -10px;
+                right: 0;
+                top: 0;
+                width: 40%;
+                z-index: 10;
+                p {
+                    margin-top: 10%;
+                }
+            }
+            .categories {
+                display: none;
+            }
+        }
+    }
+    .whytopost-ddkits-principal-home,
+    .whytopost-ddkits-principal {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: $tablet) {
+    .whytopost-ddkits-principal {
+        min-width: 100%;
+        padding: 10px;
+    }
+    .ddkits-blog-home-recent {
+        h2 {
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 30px;
+            font-size: 18px;
+            margin-top: 70px;
+        }
+        .fondo-ddkits-home {
+            .title {
+            }
+            .body {
+            }
+            .author {
+                height: 100%;
+                right: 0;
+                top: 0;
+            }
+            .whytopost-ddkits-principal-home,
+            .whytopost-ddkits-principal {
+                width: 100% !important;
+            }
+        }
+    }
+    .ddkits-blog-home {
+        h2 {
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 30px;
+            font-size: 24px;
+            margin-top: 70px;
+        }
+        p {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .fondo-ddkits-home {
+            background: $white;
+            border-radius: 3px;
+            overflow: hidden;
+            height: inherit;
+            margin-bottom: 20px;
+            display: absolute;
+            color: $white;
+            text-decoration: none;
+            position: relative;
+            height: 300px;
+
+            .title {
+                height: 50px;
+                width: 100%;
+            }
+            .body {
+                height: 100px;
+                width: 100%;
+            }
+            .author {
+                height: 50px;
+                width: 100%;
+            }
+            .whytopost-ddkits-principal-home,
+            .whytopost-ddkits-principal {
+                width: 100% !important;
+            }
+        }
+
+        .black {
+            background: $black;
+        }
+        .img-ddkits-principal-home {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            opacity: 0.2;
+        }
+        .whytopost-ddkits-principal-home {
+            vertical-align: top;
+            color: $white;
+            width: 100%;
+            padding: 0 10px;
+
+            h3 {
+                font-weight: 900;
+                color: $white;
+                text-transform: uppercase;
+                font-size: 20px;
+                color: $white;
+            }
+
+            p {
+                color: $white;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+
+        .todas-las-ddkits-home {
+            background: $main;
+            height: 100%;
+            width: 100%;
+            display: inline-block;
+            padding: 20px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+    }
 }
 
 .commentForm {
-  background: $white;
+    background: $white;
 }
 
 .box-shadow {
-  -webkit-transition: all 0.4s ease-out 0s;
-  -o-transition: all 0.4s ease-out 0s;
-  transition: all 0.4s ease-out 0s;
+    -webkit-transition: all 0.4s ease-out 0s;
+    -o-transition: all 0.4s ease-out 0s;
+    transition: all 0.4s ease-out 0s;
 
-  width: 100%;
-  text-align: left;
-  margin: -70px 0px 0px 0px;
+    width: 100%;
+    text-align: left;
+    margin: -70px 0px 0px 0px;
 
-  h1 {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-    font-size: 28px;
-    text-align: center;
-    font-family: $main-font;
-    line-height: 100%;
-    margin: 0;
-    color: $white;
-    max-width: 100%;
-    padding: 5px;
-    font-weight: bold;
-    bbackground: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.7);
-    max-width: 100%;
-    text-transform: uppercase;
-  }
+    h1 {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+            0 1px 2px 0 rgba(0, 0, 0, 0.19);
+        font-size: 28px;
+        text-align: center;
+        font-family: $main-font;
+        line-height: 100%;
+        margin: 0;
+        color: $white;
+        max-width: 100%;
+        padding: 5px;
+        font-weight: bold;
+        bbackground: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.7);
+        max-width: 100%;
+        text-transform: uppercase;
+    }
 }
 .categories {
-  input {
-    cursor: pointer;
-    font-size: 12px;
-    text-align: center;
-    font-family: $main-font;
-    line-height: 100%;
-    margin: 0;
-    color: $white;
-    padding: 5px;
-    font-weight: bold;
-    background: $black;
-    text-transform: uppercase;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-  }
+    input {
+        cursor: pointer;
+        font-size: 12px;
+        text-align: center;
+        font-family: $main-font;
+        line-height: 100%;
+        margin: 0;
+        color: $white;
+        padding: 5px;
+        font-weight: bold;
+        background: $black;
+        text-transform: uppercase;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+            0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    }
 }
 
 // comments styles for articles
 .nameComments {
-  margin: 0;
-  @media (max-width: 770px) {
-    width: 100%;
-    display: inline-block;
-  }
+    margin: 0;
+    @media (max-width: 770px) {
+        width: 100%;
+        display: inline-block;
+    }
 }
 .imageComments {
-  margin: 0;
-  @media (max-width: 770px) {
-    display: none;
-  }
+    margin: 0;
+    @media (max-width: 770px) {
+        display: none;
+    }
 }
 #commentForm,
 .comment-body {
-  margin: 0;
-  background: $white;
-  @media (max-width: 770px) {
-    width: 100%;
-    display: inline-block;
-  }
+    margin: 0;
+    background: $white;
+    @media (max-width: 770px) {
+        width: 100%;
+        display: inline-block;
+    }
 }
 
 .commentBtn {
-  padding: 5px !important;
-  font-size: 12px !important;
-  margin-bottom: 20px;
+    padding: 5px !important;
+    font-size: 12px !important;
+    margin-bottom: 20px;
 }
 
 iframe,
 p {
-  max-width: 100% !important;
+    max-width: 100% !important;
 }
