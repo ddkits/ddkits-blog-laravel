@@ -61,10 +61,10 @@ class FeedsCont extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getHomefeeds(Request $request)
+    public function getHomefeeds(Request $request, $source)
     {
         $id = ($request->id) ?: 0;
-        $source = ($request->source) ? strtolower($request->source) : false;
+        $source = ($source) ? $source : false;
         $date = ($request->date) ? $request->date : false;
         $response['code'] = 200;
         $response['message'] = $date;

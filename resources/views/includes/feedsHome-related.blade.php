@@ -5,7 +5,7 @@
 @php
     $last_id = 0;
     $last_date = 0;
-    $sli = ($splice)?? 0;
+    $sli = ($splice)?: 0;
 @endphp
 <!-- show all after last row  -->
 @foreach ($feedsCont->getFeedsHomeNews('all')->paginate($howMany)->splice($sli) as $post)
@@ -36,6 +36,7 @@
 <script>
 $(document).ready(function(){
 
+
     var _token = $('input[name="_token"]').val();
     function load_data(id="", source=false, date=false, _token)
     {
@@ -45,8 +46,9 @@ $(document).ready(function(){
         if(!date){
             date =false;
         }
+        var thisUrl = "/feeds-load-more" + "/all";
     $.ajax({
-    url:"/feeds-load-more",
+    url: thisUrl,
     method:"GET",
     data:{id:id, source:source, date:date, _token:_token},
     success:function(data)

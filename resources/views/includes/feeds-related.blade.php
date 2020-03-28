@@ -35,7 +35,6 @@
 @endif
 <script>
 $(document).ready(function(){
-
     var _token = $('input[name="_token"]').val();
     function load_data(id="", source=false, date=false, _token)
     {
@@ -45,11 +44,12 @@ $(document).ready(function(){
         if(!date){
             date =false;
         }
-    $.ajax({
-    url:"/feeds-load-more",
-    method:"GET",
-    data:{id:id, source:source, date:date, _token:_token},
-    success:function(data)
+        var thisUrl = "/feeds-load-more" + "/" + source;
+        $.ajax({
+        url:thisUrl,
+        method:"GET",
+        data:{id:id, source:source, date:date, _token:_token},
+        success:function(data)
     {
     $('#load_more_button').remove();
     $('#post_data').append(data);
@@ -74,4 +74,3 @@ $(document).ready(function(){
 
 });
 </script>
-

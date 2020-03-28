@@ -20,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/news/{path}', ['as' => 'feeds.showPage', 'uses' => 'FeedsCont@feedsTitle']);
     Route::get('/news/channel/{path}', ['as' => 'feeds.channel.showPage', 'uses' => 'FeedsCont@feedsChannelTitle']);
     Route::get('/admin/feeds/delete-all', ['as' => 'feeds.delete.all', 'uses' => 'FeedsCont@destroyAll']);
-    Route::get('/feeds-load-more', ['as' => 'feeds.LoadMore', 'uses' => 'FeedsCont@getHomefeeds']);
+    Route::get('/feeds-load-more/{source}', ['as' => 'feeds.LoadMore', 'uses' => 'FeedsCont@getHomefeeds']);
     Route::resource('/articles', 'ArticleCont');
     Route::get('/load', ['as' => 'articles.goto', 'uses' => 'ArticleCont@gotoArticles']);
     Route::group(['middleware' => ['auth']], function () {
