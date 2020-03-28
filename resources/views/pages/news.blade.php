@@ -37,7 +37,7 @@
           <div class="row">
             @foreach($feedsCont->getHomeNews(false, false)->paginate(1) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
-                        <a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                        <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
@@ -63,7 +63,7 @@
           <!-- show only on -->
           @foreach($feedsCont->getHomeNews(false, false)->paginate(2)->splice(1) as $post)
                 <div class="ddkits-blog-content col-md-4 ">
-                    <a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                    <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                           <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -92,7 +92,7 @@
           <!-- show all after first tow  -->
             @foreach($feedsCont->getHomeNews(false, false)->paginate(4)->splice(2) as $post)
                 <div class="ddkits-blog-content col-md-4 ">
-                    <a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                    <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -116,7 +116,7 @@
           <!-- show all after last row  -->
             @foreach($feedsCont->getHomeNews(false, false)->paginate(5)->splice(4) as $post)
                 <div class="ddkits-blog-content col-md-4 ">
-                        <a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                        <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -140,7 +140,7 @@
              <!-- show all after last row  -->
             @foreach($feedsCont->getHomeNews(false, false)->paginate(6)->splice(5) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
-                        <a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                        <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-6">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6">
@@ -168,7 +168,7 @@
           <!-- show all after first tow  -->
           @foreach($feedsCont->getHomeNews(false, false)->paginate(13)->splice(6) as $post)
               <div class="ddkits-blog-content col-md-4 ">
-                      <a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                      <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                       <div class="img-ddkits-principal-home col-md-6 col-sx-6">
                         <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                       <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">

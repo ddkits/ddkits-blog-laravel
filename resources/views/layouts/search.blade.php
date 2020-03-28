@@ -8,6 +8,7 @@
 
 </head>
 <body>
+
 @inject('getInfo', 'App\Http\Controllers\AdminCont')
 <!-- {{ $getInfo->getValue('sitename') }} -->
 
@@ -18,21 +19,37 @@
     </nav>
 
     <!-- Page Header -->
-    <!-- <header class="masthead" style="background: url('/{{ $getInfo->getValue('homepage_image') }}') no-repeat;
-    background-attachment: absolute;
-    background-size: 100% 100%;"> -->
-
-      <header class="masthead col-md-12">
-        <div id="highlights-load">
-
-        <div id="header-background"></div>
-
+    <div id="video-view" style="top:20%;left:0;display:none;width:100%;position:fixed;z-index:10;background:black;padding:50px">
+        <a id="closevideo" class="pull-right col-md-12" style="cursor:pointer" aria-valuetext="close video"><h3>X Close</h3></a>
+        @include('includes.google-ad')
     </div>
-    </header>
+
+
     @include('includes.google-ad')
+
      <section>
+
      @yield('content')
       <div id="ddkitsPopup" style="padding:0; margin:0; display:none;"></div>
+      <script>
+        $("a.popup").click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var $iframe = $("<iframe>")
+                .attr("src", $this.data("link"))
+                .attr("style", "width:100%;height:400px");
+            var $title = $("<h1>").text($this.data("title"));
+            $("#video-view")
+                .append($iframe)
+                .show();
+            $iframe.wrap("<div class='class-video'>");
+        });
+        $("a#closevideo").click(function(e) {
+            e.preventDefault();
+            $("#video-view iframe").remove();
+            $("#video-view").hide();
+        });
+</script>
      </section>
     <hr>
 
