@@ -35,7 +35,7 @@
           <div class="row">
             @foreach($feedsCont->getSourceNews($source)->paginate(1) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
-                        <a href="{{ route('feeds.showPage', $post->path) }}" class=" fondo-ddkits-home">
+                    <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
@@ -64,7 +64,7 @@
           <!-- show only on -->
           @foreach($feedsCont->getSourceNews($source)->paginate(2)->splice(1) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
-                        <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                    <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                           <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -92,7 +92,7 @@
           <!-- show all after first row  -->
             @foreach($feedsCont->getSourceNews($source)->paginate(4)->splice(2) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
-                        <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+                    <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
                         <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
