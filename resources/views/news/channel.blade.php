@@ -208,7 +208,7 @@
         <div class="row">
            <!-- show all after last row  -->
            @include('includes.feeds-related', [
-               'howMany' => 19,
+               'howMany' => 25,
                'random' => false,
                'showMore' => 1,
                'splice'=> 13,
