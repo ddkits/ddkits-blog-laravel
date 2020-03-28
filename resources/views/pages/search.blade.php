@@ -55,7 +55,7 @@
 
                 </div>
                 <div class="whytopost-blog-home">
-                    <span>Read</span><br>
+                    <span>Watch</span><br>
                     {{ $postRes->categories }}
                 </div>
                 </a>
