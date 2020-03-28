@@ -13,7 +13,7 @@
     $last_id = $post->id;
     $last_date = $post->created_at;
 @endphp
-<a class="popup fondo-ddkits-home" href="#!" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
+<a class="popup fondo-ddkits-home" data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
 <div class="ddkits-blog-content-home col-md-11 col-sx-11" >
 <div class="img-ddkits-principal-home">
         <img class="ddkits" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="{{$post->title}}">
