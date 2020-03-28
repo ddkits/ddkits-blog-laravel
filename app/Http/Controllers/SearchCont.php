@@ -4,23 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Profile;
 use App\Post;
 use App\Feeds;
-use App\Followers;
 use App\postCategories;
-use App\postTags;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\AdminCont;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use Session;
-use Illuminate\Database\Eloquent\Model;
-use Input;
 use View;
-use stdClass;
-use Redirect;
 
 class SearchCont extends Controller
 {
@@ -40,27 +27,27 @@ class SearchCont extends Controller
             $name = '';
         }
 
-        $results = Post::where([
-            ['title', 'like', '%' . $name . '%']
+        $results = Feeds::where([
+            ['title', 'like', '%'.$name.'%'],
         ])->orwhere([
-            ['body', 'like', '%' . $name . '%']
+            ['body', 'like', '%'.$name.'%'],
         ]);
         $feeds = Feeds::where([
-            ['title', 'like', '%' . $name . '%']
+            ['title', 'like', '%'.$name.'%'],
         ])->orwhere([
-            ['body', 'like', '%' . $name . '%']
+            ['body', 'like', '%'.$name.'%'],
         ]);
         $users = User::where([
-            ['firstname', 'like', '%' . $name . '%']
+            ['firstname', 'like', '%'.$name.'%'],
         ])->orwhere([
-            ['lastname', 'like', '%' . $name . '%']
+            ['lastname', 'like', '%'.$name.'%'],
         ]);
 
         if (!empty($categories) and $categories !== null) {
             $catList = [];
             $usersList = [];
             $cat = postCategories::where([
-                ['category', 'like', '%' . $categories . '%']
+                ['category', 'like', '%'.$categories.'%'],
             ])->get();
             foreach ($cat as $key) {
                 $catList[$key->nid] = $key->nid;
@@ -85,62 +72,61 @@ class SearchCont extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
     }
 }
