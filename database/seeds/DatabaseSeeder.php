@@ -65,8 +65,8 @@ class DDKitsMenus extends Seeder
         ['id' => 10, 'weight' => 3, 'description' => 'Outbox', 'menu' => 'mainmenu', 'menuparent' => 7, 'name' => 'Outbox', 'link' => '/messages/outbox', 'iconclass' => '', 'class' => 'menu'],
 
         ['id' => 11, 'weight' => 4, 'description' => 'Settings', 'menu' => 'adminmenu', 'menuparent' => null, 'name' => 'Settings', 'link' => '/admin/private/settings', 'iconclass' => 'icon-settings', 'class' => 'menu'],
-        ['id' => 12, 'weight' => 4, 'description' => 'Feeds', 'menu' => 'adminmenu', 'menuparent' => null, 'name' => 'Settings', 'link' => '/admin/feeds', 'iconclass' => 'icon-settings', 'class' => 'menu'],
-        ['id' => 13, 'weight' => 4, 'description' => 'New Feed', 'menu' => 'adminmenu', 'menuparent' => 12, 'name' => 'Settings', 'link' => '/admin/feeds/create', 'iconclass' => 'icon-settings', 'class' => 'menu'],
+        ['id' => 12, 'weight' => 4, 'description' => 'Feeds', 'menu' => 'adminmenu', 'menuparent' => null, 'name' => 'Feeds', 'link' => '/admin/feeds', 'iconclass' => 'icon-settings', 'class' => 'menu'],
+        ['id' => 13, 'weight' => 4, 'description' => 'New Feed', 'menu' => 'adminmenu', 'menuparent' => 12, 'name' => 'New Feed', 'link' => '/admin/feeds/create', 'iconclass' => 'icon-settings', 'class' => 'menu'],
         ];
         foreach ($menus as $menu) {
             DB::table('menus')->insert($menu);
