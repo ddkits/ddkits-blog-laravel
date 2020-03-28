@@ -20,7 +20,7 @@
     <link href="/css/profile.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="/css/bootstrap2.min.css" rel="stylesheet" id="theme-stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{--  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  --}}
 <!--     <link rel="stylesheet" href="//bootswatch.com/cosmo/bootstrap.min.css">
  -->
     <!-- CKeditors for laravel -->
