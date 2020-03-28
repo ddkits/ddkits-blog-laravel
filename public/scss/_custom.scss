@@ -669,6 +669,12 @@ img {
         display: none;
     }
 }
+.not-mobile {
+    display: inline-block;
+    @media (max-width: 700px) {
+        display: none !important;
+    }
+}
 #commentForm,
 .comment-body {
     margin: 0;

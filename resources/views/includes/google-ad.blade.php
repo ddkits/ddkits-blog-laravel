@@ -1,5 +1,5 @@
 {{-- Ads --}}
-<div class="col-md-12 text-center align-middle">
+<div class="col-md-12 text-center align-middle not-mobile" >
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- responsive-ads -->
         <ins class="adsbygoogle"
