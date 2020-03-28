@@ -38,22 +38,23 @@
             @foreach($feedsCont->getHomeNews(false, false)->paginate(1) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
                         <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
                           <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
-                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
+
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>
                           </div>
                         </div>
-                        {{--  <div class="whytopost-blog-home">
-                         <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                        <div class="whytopost-blog-home">
+                         <span>Watch {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                         <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>  --}}
+                        </div>
                       </a>
              </div>
              @php
@@ -64,20 +65,21 @@
           @foreach($feedsCont->getHomeNews(false, false)->paginate(2)->splice(1) as $post)
                 <div class="ddkits-blog-content col-md-4 ">
                     <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                           <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
                           <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
-                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
+
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
                         </div>
-                        {{--  <div class="whytopost-blog-home">
-                          <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                        <div class="whytopost-blog-home">
+                          <span>Watch {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>  --}}
+                        </div>
                       </a>
              </div>
              @php
@@ -93,20 +95,21 @@
             @foreach($feedsCont->getHomeNews(false, false)->paginate(4)->splice(2) as $post)
                 <div class="ddkits-blog-content col-md-4 ">
                     <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
                           <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
-                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
+
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
                         </div>
-                        {{--  <div class="whytopost-blog-home">
-                          <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                        <div class="whytopost-blog-home">
+                          <span>Watch {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>  --}}
+                        </div>
                       </a>
              </div>
              @php
@@ -117,20 +120,21 @@
             @foreach($feedsCont->getHomeNews(false, false)->paginate(5)->splice(4) as $post)
                 <div class="ddkits-blog-content col-md-4 ">
                         <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
                           <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
-                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 120, 'yes') }}</p></div>
+
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>                          </div>
                         </div>
-                        {{--  <div class="whytopost-blog-home">
-                          <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                        <div class="whytopost-blog-home">
+                          <span>Watch {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 120, 'yes') }}</p></div>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>  --}}
+                        </div>
                       </a>
              </div>
              @php
@@ -141,19 +145,20 @@
             @foreach($feedsCont->getHomeNews(false, false)->paginate(6)->splice(5) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
                         <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
-                        <div class="img-ddkits-principal-home col-md-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6">
                           <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
-                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
+
                           <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                           <div class="author"><p>By: {{ $post->author }}</p>             </div></div>
-                        {{--  <div class="whytopost-blog-home">
-                          <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                        <div class="whytopost-blog-home">
+                          <span>Watch {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                          <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                           @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                               "{{ $cat }}"
                            @endforeach
-                        </div>  --}}
+                        </div>
                       </a>
                </div>
              @php
@@ -169,20 +174,21 @@
           @foreach($feedsCont->getHomeNews(false, false)->paginate(13)->splice(6) as $post)
               <div class="ddkits-blog-content col-md-4 ">
                       <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$post->guid) }}" >
-                      <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                      <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                         <img class="" src="{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">                        </div>
                       <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
                         <div class="title">{{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</div>
-                        <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
+
                         <div class="small">{{ date('D M/d/Y', strtotime($post->created_at)) }}</div>
                         <div class="author"><p>By: {{ $post->author }}</p></div>
                       </div>
-                      {{--  <div class="whytopost-blog-home">
-                        <span>Read more about {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                      <div class="whytopost-blog-home">
+                        <span>Watch {{ $getInfo->encoded($post->title, 0, 50, 'yes') }}</span><br>
+                        <div class="body"><p>{{ $getInfo->encoded($post->body, 0, 150, 'yes') }}</p></div>
                         @foreach($posts->nCategories($post->id, 'feed') as $catKey => $cat)
                             "{{ $cat }}"
                          @endforeach
-                      </div>  --}}
+                      </div>
                     </a>
            </div>
            @php

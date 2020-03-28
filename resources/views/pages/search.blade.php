@@ -43,7 +43,7 @@
         @foreach($results->paginate(9) as $postRes)
             <div class="ddkits-blog-content col-md-4 col-sx-4">
                 <a class="popup fondo-ddkits-home"  data-link="{{ str_replace('//www.youtube.com/watch?v=','//www.youtube.com/embed/',$postRes->guid) }}" >
-                <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                     <img class="" src="/{{ $postRes->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;">
                 </div>
                 <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">

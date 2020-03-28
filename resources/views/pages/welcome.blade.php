@@ -32,7 +32,7 @@
             @foreach($posts->getAllBlogs()->paginate(1) as $post)
                 <div class="ddkits-blog-content col-md-8 col-sx-8">
                         <a href="{{ route('article.show', $post->path) }}" class=" fondo-ddkits-home">
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -64,7 +64,7 @@
           @foreach($posts->getAllBlogs()->paginate(2)->splice(1) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
                         <a href="{{ route('article.show', $post->path) }}" class="black fondo-ddkits-home">
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -96,7 +96,7 @@
             @foreach($posts->getAllBlogs()->paginate(5)->splice(2) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
                         <a href="{{ route('article.show', $post->path) }}" class="black fondo-ddkits-home">
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
@@ -127,7 +127,7 @@
             @foreach($posts->getAllBlogs()->paginate(6)->splice(5) as $post)
                 <div class="ddkits-blog-content col-md-4 col-sx-4">
                         <a href="{{ route('article.show', $post->path) }}" class="black fondo-ddkits-home">
-                        <div class="img-ddkits-principal-home col-md-6 col-sx-6">
+                        <div class="img-ddkits-principal-home col-md-12 col-sx-12">
                           <img class="" src="/{{ $post->image }}" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;" alt="{{$post->title}}">
                         </div>
                         <div class="whytopost-ddkits-principal-home pull-right col-md-6 col-sx-6">
