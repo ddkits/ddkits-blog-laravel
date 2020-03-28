@@ -64,8 +64,8 @@ class FeedsCont extends Controller
     public function getHomefeeds(Request $request)
     {
         $id = ($request->id) ?: 0;
-        $source = ($request->source) ?: false;
-        $date = ($request->date) ?: false;
+        $source = ($request->source) ? strtolower($request->source) : false;
+        $date = ($request->date) ? $request->date : false;
         $response['code'] = 200;
         $response['message'] = $date;
         // create a variable and store in it from the database
