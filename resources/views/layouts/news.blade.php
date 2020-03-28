@@ -24,9 +24,32 @@
 
     </header>
       <section>
+        <div id="video-view" style="display:none;width:100%;position:fixed;z-index:10;background:black;padding:50px">
+            <a id="closevideo" class="pull-right col-md-12" style="cursor:pointer" aria-valuetext="close video"><h3>X Close</h3></a>
+            @include('includes.google-ad')
+        </div>
+
      @yield('content')
       <div id="ddkitsPopup" style="padding:0; margin:0; display:none;"></div>
-
+      <script>
+        $("a.popup").click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var $iframe = $("<iframe>")
+                .attr("src", $this.data("link"))
+                .attr("style", "width:100%;height:400px");
+            var $title = $("<h1>").text($this.data("title"));
+            $("#video-view")
+                .append($iframe)
+                .show();
+            $iframe.wrap("<div class='class-video'>");
+        });
+        $("a#closevideo").click(function(e) {
+            e.preventDefault();
+            $("#video-view iframe").remove();
+            $("#video-view").hide();
+        });
+</script>
      </section>
     <hr>
 

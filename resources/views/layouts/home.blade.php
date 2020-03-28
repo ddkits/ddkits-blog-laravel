@@ -32,10 +32,16 @@
     </header>
       <section>
           <h1 hidden=true>{{ $getInfo->getValue('sitename') }}</h1>
+          <div id="video-view" style="display:none;width:100%;position:fixed;z-index:10;background:black;padding:50px">
+            <a id="closevideo" class="pull-right col-md-12" style="cursor:pointer" aria-valuetext="close video"><h3>X  </h3></a>
+            @include('includes.google-ad')
+        </div>
+
      @yield('content')
       <div id="ddkitsPopup" style="padding:0; margin:0; display:none;"></div>
 
      </section>
+
     <hr>
 
     <!-- Footer -->
