@@ -6,16 +6,19 @@ use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 // Include FB configuration file
 // require_once 'fbConfig.php';
 class GraphController extends Controller
 {
     private $api;
+
     public function __construct(Facebook $fb = null)
     {
         $this->middleware(function ($request, $next) use ($fb) {
             $fb->setDefaultAccessToken(env('FACEBOOK_ACCESS_TOKEN'));
             $this->api = $fb;
+
             return $next($request);
         });
     }
@@ -23,10 +26,9 @@ class GraphController extends Controller
     public function retrieveUserProfile()
     {
         try {
+            $params = 'first_name,last_name,age_range,gender';
 
-            $params = "first_name,last_name,age_range,gender";
-
-            $user = $this->api->get('/me?fields=' . $params)->getGraphUser();
+            $user = $this->api->get('/me?fields='.$params)->getGraphUser();
 
             dd($user);
         } catch (FacebookSDKException $e) {
@@ -39,7 +41,7 @@ class GraphController extends Controller
     {
         try {
             $response = $this->api->post('/me/feed', [
-                'message' => $request->message
+                'message' => $request->message,
             ])->getGraphNode()->asArray();
             if ($response['id']) {
                 // post created
@@ -48,13 +50,14 @@ class GraphController extends Controller
             dd($e); // handle exception
         }
     }
+
     /**
      * Posting to Pages
      * Method of posting to pages is different from profiles.
      *  When you’re posting to your profile, you’re using your own access
      * token to make the request. Every page your manage has its own access token and you
      * have to retrieve it before making any requests. Add a new method
-     * getPageAccessToken to GraphController
+     * getPageAccessToken to GraphController.
      */
     public function getPageAccessToken($page_id)
     {
@@ -64,11 +67,11 @@ class GraphController extends Controller
             $response = $this->api->get('/me/accounts', Auth::user()->token);
         } catch (FacebookResponseException $e) {
             // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
+            echo 'Graph returned an error: '.$e->getMessage();
             exit;
         } catch (FacebookSDKException $e) {
             // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            echo 'Facebook SDK returned an error: '.$e->getMessage();
             exit;
         }
 
@@ -83,14 +86,14 @@ class GraphController extends Controller
             dd($e); // handle exception
         }
     }
+
     public function publishToPage($page_id, $feed)
     {
-
         try {
             $post = $this->api->post(
-                '/' . $page_id . '/feed',
+                '/'.$page_id.'/feed',
                 array(
-                    'message' => $feed->title . ' - ' . env('APP_URL') . '/' . $feed->path
+                    'message' => $feed->title.' - '.env('APP_URL').'/'.$feed->path,
                 ),
                 $this->getPageAccessToken($page_id)
             );
@@ -100,18 +103,19 @@ class GraphController extends Controller
             dd($e); // handle exception
         }
     }
+
     public function publishToPageNew($page_id, $feed)
     {
         /*
         * Configuration and setup Facebook SDK
         */
 
-        $redirectURL   = env('FACEBOOK_REDIRECT'); //Callback URL
+        $redirectURL = env('FACEBOOK_REDIRECT'); //Callback URL
         $fbPermissions = array('publish_actions'); //Facebook permission
 
         $fb = new Facebook(array(
-            'app_id' => env('FACEBOOK_APP_ID'),
-            'app_secret' => env('FACEBOOK_APP_SECRET'),
+            'app_id' => env('FACEBOOK_APP_ID_ID', '584857442336768'),
+            'app_secret' => env('FACEBOOK_APP_SECRET', 'd8cffd5f033b81df8a9d9845c3528e66'),
             'default_graph_version' => 'v2.6',
         ));
 
@@ -138,9 +142,9 @@ class GraphController extends Controller
             //FB post content
             $message = $feed->title;
             $title = $feed->title;
-            $link = env('APP_URL') . '/' . $feed->path;
+            $link = env('APP_URL').'/'.$feed->path;
             $description = $feed->title;
-            $picture = env('APP_URL') . '/' . $feed->image;
+            $picture = env('APP_URL').'/'.$feed->image;
 
             $attachment = array(
                 'message' => $message,
@@ -148,20 +152,20 @@ class GraphController extends Controller
                 'link' => $link,
                 'description' => $description,
                 'picture' => $picture,
-                'scope' => 'publish_actions'
+                'scope' => 'publish_actions',
             );
 
             try {
                 // Post to Facebook
-                $fb->post('/' . $page_id . '/feed?scope=publish_actions&scopes=publish_actions', $attachment, (string) env('FACEBOOK_ACCESS_TOKEN'));
+                $fb->post('/'.$page_id.'/feed?scope=publish_actions&scopes=publish_actions', $attachment, (string) env('FACEBOOK_ACCESS_TOKEN'));
 
                 // Display post submission status
                 echo 'The post was published successfully to the Facebook timeline.';
             } catch (FacebookResponseException $e) {
-                echo 'Graph returned an error: ' . $e->getMessage();
+                echo 'Graph returned an error: '.$e->getMessage();
                 exit;
             } catch (FacebookSDKException $e) {
-                echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                echo 'Facebook SDK returned an error: '.$e->getMessage();
                 exit;
             }
         } else {
@@ -169,7 +173,7 @@ class GraphController extends Controller
             $fbLoginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
 
             // Redirect to Facebook login page
-            echo '<a href="' . $fbLoginURL . '"><img src="fb-btn.png" /></a>';
+            echo '<a href="'.$fbLoginURL.'"><img src="fb-btn.png" /></a>';
         }
     }
 }

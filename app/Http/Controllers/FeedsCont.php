@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\DB;
-use App\Comments;
 use App\Profile;
 use App\userFiles;
 use App\Feeds;
@@ -26,6 +25,7 @@ use function GuzzleHttp\json_decode;
 class FeedsCont extends Controller
 {
     use Notifiable;
+
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +37,7 @@ class FeedsCont extends Controller
         $categories = $this->categories();
         $tags = $this->tags();
         $feeds = FeedsList::orderby('id', 'desc')->paginate(10);
+
         return view('admin.feed.index')->with([
             'feeds' => $feeds,
             'tags' => $tags,
@@ -44,6 +45,7 @@ class FeedsCont extends Controller
         ]);
         // return a view and pass in the above variable
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -70,25 +72,25 @@ class FeedsCont extends Controller
         $feeds = DB::table('feeds')
             ->where('created_at', '<', $date);
         if ($source !== 'all') {
-            $feeds->where('source', 'like', $source . '%');
+            $feeds->where('source', 'like', $source.'%');
         }
         $feeds->orderBy('created_at', 'DESC')->limit(18);
         $data = '';
         $count = 0;
         foreach ($feeds->get() as $post) {
             $last_id = $post->id;
-            $count++;
-            $data .= '<a href="' . route("feeds.showPage", $post->path) . '" class="black fondo-ddkits-home  col-md-6" data-id="' . $last_id . '" >
+            ++$count;
+            $data .= '<a href="'.route('feeds.showPage', $post->path).'" class="black fondo-ddkits-home  col-md-6" data-id="'.$last_id.'" >
             <div class="ddkits-blog-content-home col-md-11 col-sx-11" >
             <div class="img-ddkits-principal-home">';
             if (strpos($post->image, 'http') !== true) {
-                $data .= '<img class="ddkits" src="/' . $post->image . '" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="' . $post->title . '">';
+                $data .= '<img class="ddkits" src="/'.$post->image.'" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="'.$post->title.'">';
             } else {
-                $data .= '<img class="ddkits" src="' . $post->image . '" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="' . $post->title . '">';
+                $data .= '<img class="ddkits" src="'.$post->image.'" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="'.$post->title.'">';
             }
             $data .= '</div>
             <div class="whytopost-ddkits-principal-home">
-            <div class=" col-md-12">' . $this->encoded($post->title, 0, 50, "yes") .  '<div class="small">' . date('M/d/Y', strtotime($post->created_at)) . '</div></div>
+            <div class=" col-md-12">'.$this->encoded($post->title, 0, 50, 'yes').'<div class="small">'.date('M/d/Y', strtotime($post->created_at)).'</div></div>
             <div class="author">
             </div>
             </div>
@@ -97,15 +99,14 @@ class FeedsCont extends Controller
             $dataNow = $post->created_at;
         }
         if ($count < 18) {
-            //
         } else {
             $data .= '<div id="post_data" class="col-md-12"></div>
         <div id="load_more" class="align-text-center align-items-center col-md-12">
-        <button type="button" name="load_more_button" class="btn form-control" data-id="' . $last_id . '" data-source="' . $source . '" data-date="' . $dataNow . '" id="load_more_button">Load More News</button>
+        <button type="button" name="load_more_button" class="btn form-control" data-id="'.$last_id.'" data-source="'.$source.'" data-date="'.$dataNow.'" id="load_more_button">Load More News</button>
         </div>';
         }
         echo $data;
-}
+    }
 
     /**
      * Display a listing of the resource.
@@ -129,13 +130,15 @@ class FeedsCont extends Controller
         foreach ($feeds as $feed => $item) {
             if ($feed == 'image') {
                 if (strpos($item, 'http') !== true) {
-                    $feeds[$feed] = '/' . $feed->image;
+                    $feeds[$feed] = '/'.$feed->image;
                 }
             }
         }
+
         return $feeds;
     }
-     /**
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -153,12 +156,14 @@ class FeedsCont extends Controller
         foreach ($feeds as $feed => $item) {
             if ($feed == 'image') {
                 if (strpos($item, 'http') !== true) {
-                    $feeds[$feed] = '/' . $feed->image;
+                    $feeds[$feed] = '/'.$feed->image;
                 }
             }
         }
+
         return $feeds;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -169,7 +174,7 @@ class FeedsCont extends Controller
         // create a variable and store in it from the database
         $feeds = DB::table('feeds');
         if ($source) {
-            $feeds->where('source', 'like', $source . '%');
+            $feeds->where('source', 'like', $source.'%');
         }
         if ($random) {
             $feeds->inRandomOrder();
@@ -179,12 +184,14 @@ class FeedsCont extends Controller
         foreach ($feeds as $feed => $item) {
             if ($feed == 'image') {
                 if (strpos($item, 'http') !== true) {
-                    $feeds[$feed] = '/' . $feed->image;
+                    $feeds[$feed] = '/'.$feed->image;
                 }
             }
         }
+
         return $feeds;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -194,8 +201,10 @@ class FeedsCont extends Controller
     {
         // create a variable and store in it from the database
         $feeds = Feeds::orderby('created_at', 'desc')->where('homepage', 1);
+
         return $feeds;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -205,8 +214,10 @@ class FeedsCont extends Controller
     {
         // create a variable and store in it from the database
         $feeds = Feeds::orderby('created_at', 'desc')->where('homepage', 2);
+
         return $feeds;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -223,6 +234,7 @@ class FeedsCont extends Controller
                 $topfeeds[] = ['id' => $topfeed->id, 'title' => $topfeed->title, 'body' => $topfeed->body, 'date' => $topfeed->created_at];
             }
         }
+
         return $topfeeds;
         // return a view and pass in the above variable
     }
@@ -260,6 +272,7 @@ class FeedsCont extends Controller
         } else {
             $count = 0;
         }
+
         return $count;
         // return a view and pass in the above variable
     }
@@ -275,11 +288,12 @@ class FeedsCont extends Controller
         $tags = $this->tags();
         $user = User::find(Auth::user()->id);
         $profileInfo = Profile::where('uid', $user->id);
+
         return view('admin.feed.create')->with([
             'user' => $user,
             'profile' => $profileInfo,
             'categories' => $categories,
-            'tags' => $tags
+            'tags' => $tags,
         ]);
     }
 
@@ -296,26 +310,26 @@ class FeedsCont extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $UserFilesCont = new userFiles;
+        $UserFilesCont = new userFiles();
         // validate the data
         $this->validate($request, array(
-            'title' => 'required|max:255'
+            'title' => 'required|max:255',
         ));
 
-
         // store
-        $feedslist = new FeedsList;
+        $feedslist = new FeedsList();
         $feedslist->uid = Auth::user()->id;
         $feedslist->title = $request->title;
         if (!empty($request->youtube)) {
-            $feedslist->feed_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . (string) $request->youtube;
-        } else if (!empty($request->youtubeuser)) {
-            $feedslist->feed_url = 'https://www.youtube.com/feeds/videos.xml?user=' . (string) $request->youtubeuser;
+            $feedslist->feed_url = 'https://www.youtube.com/feeds/videos.xml?channel_id='.(string) $request->youtube;
+        } elseif (!empty($request->youtubeuser)) {
+            $feedslist->feed_url = 'https://www.youtube.com/feeds/videos.xml?user='.(string) $request->youtubeuser;
         } else {
             $feedslist->feed_url = $request->feed_url;
         }
@@ -344,26 +358,29 @@ class FeedsCont extends Controller
         $feedslist->save();
 
         Session::flash('Success', 'Feeds Added');
+
         return redirect()->route('feeds.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id, $message)
     {
         return view('admin.feed.show')->with([
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -379,6 +396,7 @@ class FeedsCont extends Controller
         $comments = DB::table('comments')->where('nid', $id)->where('type', 'feed')->get();
         $user = DB::table('users')->where('id', $post->uid)->first();
         $profileInfo = Profile::where('uid', $user->id);
+
         return view('admin.feed.edit')->with([
             'post' => $post,
             'user' => $user,
@@ -387,15 +405,16 @@ class FeedsCont extends Controller
             'tags' => $tags,
             'categories' => $categories,
             'nCategories' => $nCategories,
-            'nTags' => $nTags
+            'nTags' => $nTags,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -403,7 +422,7 @@ class FeedsCont extends Controller
         // validate the data
         $this->validate($request, array(
             'title' => 'required|max:255',
-            'feed_url' => 'required'
+            'feed_url' => 'required',
         ));
         $categories = $this->categories();
         $tags = $this->tags();
@@ -417,6 +436,7 @@ class FeedsCont extends Controller
         Session::flash('Success', 'feed updated successfully!');
         // create a variable and store in it from the database
         $feeds = FeedsList::orderby('id', 'desc')->paginate(10);
+
         return view('admin.feed.index')->with([
             'feeds' => $feeds,
             'tags' => $tags,
@@ -427,31 +447,37 @@ class FeedsCont extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         DB::table('views')->where('nid', $id)->DELETE();
         Feeds::destroy($id);
-        return redirect()->route("admin.feed.index");
+
+        return redirect()->route('admin.feed.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroyAll()
     {
         $feed = Feeds::truncate();
-        return redirect()->route("feeds.index");
+
+        return redirect()->route('feeds.index');
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function nTags($nid, $type = false)
@@ -478,7 +504,8 @@ class FeedsCont extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function tags($type = false)
@@ -491,6 +518,7 @@ class FeedsCont extends Controller
                     $final[$key->tag] = $key->tag;
                 }
             }
+
             return $final;
         } else {
             $tags = DB::table('post_tags')->get();
@@ -500,13 +528,16 @@ class FeedsCont extends Controller
                     $final[$key->tag] = $key->tag;
                 }
             }
+
             return $final;
         }
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function nCategories($nid, $type = false)
@@ -533,7 +564,8 @@ class FeedsCont extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function categories($type = false)
@@ -546,6 +578,7 @@ class FeedsCont extends Controller
                     $final[$key->category] = $key->category;
                 }
             }
+
             return $final;
         } else {
             $tags = DB::table('post_categories')->get();
@@ -555,13 +588,13 @@ class FeedsCont extends Controller
                     $final[$key->category] = $key->category;
                 }
             }
+
             return $final;
         }
     }
 
     public function create_slug($string = false)
     {
-
         // if no string
         if ($string == null) {
             return false;
@@ -573,10 +606,12 @@ class FeedsCont extends Controller
 
         return $slug;
     }
+
     /**
      * Update the specified feeds to store.
      *
-     * @param  int  $url
+     * @param int $url
+     *
      * @return \Illuminate\Http\Response
      */
     private function syncFeed($url)
@@ -588,6 +623,7 @@ class FeedsCont extends Controller
             $results = simplexml_load_file($url);
             // print_r($results);
             Session::flash('Success', 'Pass');
+
             return $results;
             // return $this->createNewFeeds($results);
         } catch (\Exception $e) {
@@ -597,10 +633,12 @@ class FeedsCont extends Controller
             return $results;
         }
     }
+
     /**
      * Update the specified feeds to store.
      *
-     * @param  int  $url
+     * @param int $url
+     *
      * @return \Illuminate\Http\Response
      */
     private function syncVideoFeed($url)
@@ -613,6 +651,7 @@ class FeedsCont extends Controller
             $results = new \SimpleXMLElement($feed);
             // print_r($results);
             Session::flash('Success', 'Pass');
+
             return $results;
             // return $this->createNewFeeds($results);
         } catch (\Exception $e) {
@@ -633,11 +672,13 @@ class FeedsCont extends Controller
         // create a variable and store in it from the database
         $feeds = FeedsList::all();
         foreach ($feeds as $key) {
-            echo $key->id . ' Imported';
+            echo $key->id.' Imported';
             $this->feedsSyncDirect($key->id);
         }
+
         return $feeds;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -649,7 +690,7 @@ class FeedsCont extends Controller
         $feeds = DB::table('feeds');
 
         return view('admin.feed.feedslist')->with([
-            'feeds' => $feeds
+            'feeds' => $feeds,
         ]);
     }
 
@@ -665,9 +706,10 @@ class FeedsCont extends Controller
         $feeds = DB::table('feeds');
 
         return view('admin.feed.feedslist')->with([
-            'feeds' => $feeds
+            'feeds' => $feeds,
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -689,10 +731,12 @@ class FeedsCont extends Controller
 
         return $feedsRelated;
     }
+
     /**
      * feedsSync the specified feeds to store.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function feedsSyncDirect($id)
@@ -723,6 +767,7 @@ class FeedsCont extends Controller
             return redirect()->route('feeds.index');
         }
     }
+
     /**
      * feedsSync the specified feeds to store.
      *
@@ -760,7 +805,8 @@ class FeedsCont extends Controller
     /**
      * createNewFeeds the specified feeds to store.
      *
-     * @param  array  $results
+     * @param array $results
+     *
      * @return \Illuminate\Http\Response
      */
     public function createNewFeeds($results, $tags, $categories, $source_id, $title)
@@ -777,15 +823,15 @@ class FeedsCont extends Controller
         foreach ($channel as $key) {
             if (strpos($key, 'author') !== false || strpos($key, 'user') !== false || strpos($key, 'dc:') !== false) {
                 $author = $key;
-            } else if (strpos($key, 'guid') !== false) {
+            } elseif (strpos($key, 'guid') !== false) {
                 $guid = $key;
-            } else if (strpos($key, 'image') !== false) {
+            } elseif (strpos($key, 'image') !== false) {
                 $image = $key;
-            } else if (strpos($key, 'cate') !== false) {
+            } elseif (strpos($key, 'cate') !== false) {
                 $category = $key;
-            } else if (strpos($key, 'content') == true) {
+            } elseif (strpos($key, 'content') == true) {
                 $content = $key;
-            } else if (strpos($key, 'pubDate') !== false || strpos($key, 'created') !== false) {
+            } elseif (strpos($key, 'pubDate') !== false || strpos($key, 'created') !== false) {
                 $dateIs = $key;
             }
         }
@@ -797,14 +843,14 @@ class FeedsCont extends Controller
             $e_pubDate = (string) $result->pubDate;
             $e_description = (string) $result->description;
             $e_guid = (string) $result->guid;
-            $e_author = $result->children('dc', True)->creator;
+            $e_author = $result->children('dc', true)->creator;
             $e_authorencoded = (string) $e_author[0];
             // get encoded contents
-            $e_content = $result->children("content", true);
+            $e_content = $result->children('content', true);
             $e_encoded = (string) $e_content->encoded;
             if (!Feeds::where('guid', $e_guid)->first()) {
                 $slug = $this->create_slug($result->title);
-                $feed = new Feeds;
+                $feed = new Feeds();
                 $feed->uid = (Auth::user()->id) ?? 1;
                 $feed->title = $e_title;
 
@@ -816,7 +862,7 @@ class FeedsCont extends Controller
                 if ($e_encoded) {
                     $feed->body = $e_encoded;
                 } else {
-                    $feed->body =  $e_description;
+                    $feed->body = $e_description;
                 }
                 $feed->source = (string) $title;
                 $feed->path = $slug;
@@ -867,34 +913,35 @@ class FeedsCont extends Controller
     /**
      * createNewFeeds the specified feeds to store.
      *
-     * @param  array  $results
+     * @param array $results
+     *
      * @return \Illuminate\Http\Response
      */
     public function createNewVideoFeeds($results, $tags, $categories, $source_id, $title)
     {
         $channel = $results->title;
         $count = count($results->entry);
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $item = $results->entry[$i];
             $url = $item->link->attributes();
             $e_guid = $url['href'];
             if (!Feeds::where('guid', $e_guid)->first()) {
-                $videourl = explode("&", $url['href']);
-                $video = str_replace("https://www.youtube.com/watch?v=", "", $videourl[0]);
+                $videourl = explode('&', $url['href']);
+                $video = str_replace('https://www.youtube.com/watch?v=', '', $videourl[0]);
                 $slug = $this->create_slug($item->title);
-                $feed = new Feeds;
+                $feed = new Feeds();
                 $feed->uid = (Auth::user()->id) ?? 1;
                 $feed->title = $item->title;
                 // get the guid from the item
                 $feed->guid = $url['href'];
                 $feed->author = $item->author->name;
                 $bodyUpdate = '';
-                $bodyUpdate .= '<p><iframe class="center" width="500px" height="300px" src="https://www.youtube.com/embed/' . $video . '" frameborder="0" allowfullscreen></iframe></p><br>';
+                $bodyUpdate .= '<p><iframe class="center" width="500px" height="300px" src="https://www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe></p><br>';
                 $feed->source = $title;
                 $feed->source_id = $source_id;
                 // get the image
-                $thumbUrl = $item->children('media', True)->group->children('media', True)->thumbnail->attributes();
-                $bodyUpdate .= $item->children('media', True)->group->children('media', True)->description;
+                $thumbUrl = $item->children('media', true)->group->children('media', true)->thumbnail->attributes();
+                $bodyUpdate .= $item->children('media', true)->group->children('media', true)->description;
                 $downloadedImage = $this->downloadImage($thumbUrl, $slug);
                 $feed->image = $downloadedImage;
                 $feed->path = $slug;
@@ -915,7 +962,7 @@ class FeedsCont extends Controller
                 if (!empty($tags)) {
                     DB::table('post_tags')->where(['nid' => $feed->id, 'type' => 'feed'])->delete();
                     foreach (explode(', ', $tags) as $key => $value) {
-                        $newTag = new postTags;
+                        $newTag = new postTags();
                         $newTag->type = 'feed';
                         $newTag->tag = $value;
                         $newTag->nid = $feed->id;
@@ -930,7 +977,7 @@ class FeedsCont extends Controller
                 if (!empty($categories)) {
                     DB::table('post_categories')->where(['nid' => $feed->id, 'type' => 'feed'])->delete();
                     foreach (explode(', ', $categories) as $key => $value) {
-                        $newTag = new postCategories;
+                        $newTag = new postCategories();
                         $newTag->type = 'feed';
                         $newTag->category = $value;
                         $newTag->nid = $feed->id;
@@ -944,27 +991,32 @@ class FeedsCont extends Controller
                 Session::flash('Success', 'Feed exist');
             }
         }
+
         return redirect()->route('feeds.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function feedsChannelTitle($slug = false)
     {
-        $results = Feeds::where('source', 'like', $slug . '%')->orderBy('created_at', 'DESC');
+        $results = Feeds::where('source', 'like', $slug.'%')->orderBy('created_at', 'DESC');
+
         return view('news.channel')->with([
             'news' => $results,
-            'source' => $slug
+            'source' => $slug,
         ]);
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function feedsTitle($slug = false)
@@ -986,15 +1038,15 @@ class FeedsCont extends Controller
             $tags = '';
         }
 
-
         return view('news.article')->with([
             'post' => $post,
             'comments' => $comments,
             'nTags' => $tags,
             'nCategories' => $cats,
-            'slug' => $slug
+            'slug' => $slug,
         ]);
     }
+
     private function curl_get_contents($url)
     {
         // Initiate the curl session
@@ -1014,6 +1066,7 @@ class FeedsCont extends Controller
         // Return the output as a variable
         return $output;
     }
+
     // the function below to encode any html content and trim
     public function encoded($string, $param, $param2, $filter = 'no')
     {
@@ -1025,9 +1078,10 @@ class FeedsCont extends Controller
         $s = html_entity_decode($fin);
         $sub = substr($s, $param, $param2);
         $before = htmlentities($sub);
-        $dots = strlen($string) > $param ? "..." : "";
+        $dots = strlen($string) > $param ? '...' : '';
 
-        $final = $before . ' ' . $dots;
+        $final = $before.' '.$dots;
+
         return $final;
     }
 
@@ -1035,23 +1089,23 @@ class FeedsCont extends Controller
     public function encodeOnly($string)
     {
         $final = html_entity_decode($string);
+
         return $final;
     }
 
     // Download images instead
     public function downloadImage($iurl, $file_name)
     {
-
         $destinationPath = 'uploads/files/feeds';
         $path = public_path('uploads/files/feeds');
         if (!Storage::directories('public')) {
             Storage::makeDirectory('public');
-        } else  if (!Storage::directories('public/uploads')) {
+        } elseif (!Storage::directories('public/uploads')) {
             Storage::makeDirectory('public/uploads');
-        } else  if (!Storage::directories($path)) {
+        } elseif (!Storage::directories($path)) {
             Storage::makeDirectory($path);
         }
-        $path_name =  parse_url($iurl, PHP_URL_PATH);
+        $path_name = parse_url($iurl, PHP_URL_PATH);
         // $file_name = str_replace('/', '', $path_name);
 
         $file = file_get_contents($iurl);
@@ -1061,11 +1115,11 @@ class FeedsCont extends Controller
             $saveFile = $file->file;
         } else {
             //Move Uploaded File
-            $saveFile = $destinationPath . '/' . $file_name;
-            $realFile = $path . '/' . $file_name;
+            $saveFile = $destinationPath.'/'.$file_name;
+            $realFile = $path.'/'.$file_name;
             file_put_contents($realFile, $file);
             // start saving the file
-            $fileDB = new userFiles;
+            $fileDB = new userFiles();
             $fileDB->uid = 1;
             $fileDB->nid = null;
             $fileDB->ntype = 'feed';
@@ -1074,14 +1128,14 @@ class FeedsCont extends Controller
             $fileDB->save();
             $saveFile = $fileDB->file;
         }
+
         return $saveFile;
     }
 
     // share with facebook SDK
     public function doShare($feed)
     {
-
         $post = new GraphController();
-        $post->publishToPageNew('109307603921320', $feed);
+        $post->publishToPageNew('106800667637693', $feed);
     }
 }

@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/feeds-hour', function () {
             /* php artisan feeds Import */
             \Artisan::call('feeds:hour');
-            dd("Feeds Synced.");
+            dd('Feeds Synced.');
         });
         Route::get('/admin/feeds-list', ['as' => 'feeds.list', 'uses' => 'FeedsCont@feedsList']);
         Route::delete('/admin/feeds-list-delete-one/{id}', ['as' => 'feeds.list.delete', 'uses' => 'FeedsCont@feedsListDelete']);
@@ -108,7 +108,7 @@ Route::get('login/facebook/callback', function () {
 });
 
 Route::group(['middleware' => [
-    'auth'
+    'auth',
 ]], function () {
     Route::get('/facebook-user', 'GraphController@retrieveUserProfile');
     Route::post('/facebook-user', 'GraphController@publishToProfile');
