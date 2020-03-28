@@ -100,3 +100,18 @@ function closeVideo() {
     $("#video-view iframe").remove();
     $("#video-view").hide();
 }
+
+$(document).scroll(function(e) {
+    //bind scroll event
+    e.preventDefault();
+
+    var intBottomMargin = 500; //Pixels from bottom when script should trigger
+
+    //if less than intBottomMargin px from bottom
+    if (
+        $(window).scrollTop() >=
+        $(document).height() - $(window).height() - intBottomMargin
+    ) {
+        $("a#load_more_button").click(); //trigger click
+    }
+});
