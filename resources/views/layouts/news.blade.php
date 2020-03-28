@@ -42,7 +42,7 @@
                 var $this = $(this);
                 var $iframe = $("<iframe>")
                     .attr("src", $this.data("link"))
-                    .attr("style", "width:100%;height:400px");
+                    .attr("style", "width:100%;height:40%");
                 var $title = $("<h1>").text($this.data("title"));
                 $("#video-view")
                     .append($iframe)
