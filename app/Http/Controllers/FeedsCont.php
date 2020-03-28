@@ -80,8 +80,7 @@ class FeedsCont extends Controller
         foreach ($feeds->get() as $post) {
             $last_id = $post->id;
             ++$count;
-
-            $data .= '<a class="popup fondo-ddkits-home" data-link="'.str_replace('//www.youtube.com/watch?v=', '//www.youtube.com/embed/', $post->guid).'" >
+            $data .= '<a href="'.route('feeds.showPage', $post->path).'" class="black fondo-ddkits-home  col-md-6" data-id="'.$last_id.'" >
             <div class="ddkits-blog-content-home col-md-11 col-sx-11" >
             <div class="img-ddkits-principal-home">';
             if (strpos($post->image, 'http') !== true) {
