@@ -75,13 +75,14 @@ class FeedsCont extends Controller
             $feeds->where('source', 'like', $source.'%');
         }
         $feeds->orderBy('created_at', 'DESC')->limit(18);
-        $data = '';
+        $data = '<div class="row">';
         $count = 0;
         foreach ($feeds->get() as $post) {
             $last_id = $post->id;
             ++$count;
-            $data .= '<a href="'.route('feeds.showPage', $post->path).'" class="black fondo-ddkits-home  col-md-6" data-id="'.$last_id.'" >
-            <div class="ddkits-blog-content-home col-md-11 col-sx-11" >
+            $linkIs = "'".str_replace('//www.youtube.com/watch?v=', '//www.youtube.com/embed/', $post->guid)."'";
+            $data .= '<a class="popup fondo-ddkits-home col-md-6" onclick="showVideo('.$linkIs.')" data-link="'.$linkIs.'" >
+            <div class="ddkits-blog-content-home col-md-12 col-sx-12" >
             <div class="img-ddkits-principal-home">';
             if (strpos($post->image, 'http') !== true) {
                 $data .= '<img class="ddkits" src="/'.$post->image.'" style="background-position: absolute;background-attachment: fixed;background-size: 100% 100%;"  alt="'.$post->title.'">';
@@ -103,7 +104,7 @@ class FeedsCont extends Controller
             $data .= '<div id="post_data" class="col-md-12"></div>
         <div id="load_more" class="align-text-center align-items-center col-md-12">
         <button type="button" name="load_more_button" class="btn form-control" data-id="'.$last_id.'" data-source="'.$source.'" data-date="'.$dataNow.'" id="load_more_button">Load More News</button>
-        </div>';
+        </div></div>';
         }
         echo $data;
     }

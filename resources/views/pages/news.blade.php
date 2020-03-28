@@ -208,7 +208,7 @@
         <div class="row">
            <!-- show all after last row  -->
            @include('includes.feedsHome-related', [
-               'howMany' => 26,
+               'howMany' => 27,
                'random' => false,
                'showMore' => 1,
                'date' => $date,
@@ -223,25 +223,7 @@
   function clearMouse() {
       $("titlesContent").hide();
   }
-  <script>
-    $("a.popup").click(function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $iframe = $("<iframe>")
-            .attr("src", $this.data("link"))
-            .attr("style", "width:100%;height:400px");
-        var $title = $("<h1>").text($this.data("title"));
-        $("#video-view")
-            .append($iframe)
-            .show();
-        $iframe.wrap("<div class='class-video'>");
-    });
-    $("a#closevideo").click(function(e) {
-        e.preventDefault();
-        $("#video-view iframe").remove();
-        $("#video-view").hide();
-    });
-</script>
+
   </script>
 @stop
 
