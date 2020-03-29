@@ -30,7 +30,7 @@
 <!-- Main Content -->
     <section class="ddkits-blog-home">
       <div class="container items-center col-md-11 col-sx-11">
-        <h1>{{ strtoupper($source) }}</h1>
+        {{--  <h1>{{ strtoupper($source) }}</h1>  --}}
         <hr>
           <div class="row">
             @foreach($feedsCont->getSourceNews($source)->paginate(1) as $post)
