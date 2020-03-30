@@ -222,7 +222,7 @@
                   <!-- Numbers-->
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
                     <div class="icon bg-green"><i class="fa fa-line-chart"></i></div>
-                    <div class="text"><strong>{{( ($myPostsCount ? (round((($myPostsCount / $postsc) * 100), 2) . '%') : '0' ) )}}</strong><br><small>Your Rate comparing to other</small></div>
+                    <div class="text"><strong>{{( ($myPostsCount ? (round((($myPostsCount) * 100), 2) . '%') : '0' ) )}}</strong><br><small>Your Rate comparing to other</small></div>
                   </div>
                 </div>
               </div>
@@ -240,7 +240,7 @@
                     <div class="project-title d-flex align-items-center">
                       <div class="image image-thumbnail"><img src="/{{ $myPost->image  }}" alt="{{ $myPost->title }}" class="img-fluid" width="35" height="35"></div>
                       <div class="text">
-                        <a href="/blog/{{ $myPost->id }}"><h3 class="h4">{{ $myPost->title }}</h3></a>
+                        <a href="/news/{{ $myPost->path }}"><h3 class="h4">{{ $myPost->title }}</h3></a>
                       </div>
                     </div>
                     <div class="project-date"><span class="hidden-sm-down">{{ date('M j, Y', strtotime($myPost->created_at)) }}</span></div>

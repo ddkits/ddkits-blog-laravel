@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
 use App\Post;
@@ -10,18 +9,13 @@ use App\Followers;
 use App\ToDo;
 use App\Feeds;
 use App\userFiles;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\AdminCont;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Session;
 
 class DashBoard extends Controller
 {
     protected function getDash()
     {
-
         $userId = Auth::user()->id;
         $userInfo = DashBoard::getUserInfo($userId);
         $userProfile = DB::table('profiles')->where('uid', $userInfo->id)->first();
@@ -63,33 +57,36 @@ class DashBoard extends Controller
             }
         }
         // get my posts only
-        $myPosts = DB::table('posts')->where('uid', $userId);
-        $myPostsCount = DB::table('posts')->where('uid', $userId)->count();
+        $myPosts = DB::table('feeds')->where('uid', $userId);
+        $myPostsCount = DB::table('feeds')->where('uid', $userId)->count();
         foreach ($myPosts->get() as $post) {
             $existViews = DB::table('views')->where('nid', $post->id)->first();
-            $countv = $countv + $existViews->views;
-            $myPostsViews = $countv;
-            $myPostViews[$post->id] = $existViews->views;
-        }
-
-        // comments for each blogs
-        foreach ($myPosts->get() as $myPost) {
-            $postComments[$myPost->id] = DB::table('comments')->where('nid', $myPost->id)->get();
-            $postCommentsCount[$myPost->id] = DB::table('comments')->where('nid', $myPost->id)->count();
-        }
-
-        // Get views for each one of the posts
-        foreach ($myPosts->get() as $myPost) {
-            $views = DB::table('views')->where('nid', $myPost->id)->first();
-            $myViewsChart[$myPost->title] = $views->views;
+            if ($existViews) {
+                $countv = $countv + $existViews->views;
+                $myPostsViews = $countv;
+                $myPostViews[$post->id] = $existViews->views;
+            } else {
+                $existViewsAdd = DB::table('views')->insert([
+                    'nid' => $post->id,
+                    'views' => 1,
+                    ]);
+                $existViews = DB::table('views')->where('nid', $post->id)->first();
+                $countv = $countv + $existViews->views;
+                $myPostsViews = $countv;
+                $myPostViews[$post->id] = $existViews->views;
+            }
+            $myViewsChart[$post->title] = $existViews->views;
+            // comments for each blogs
+            $postComments[$post->id] = DB::table('comments')->where('nid', $post->id)->get();
+            $postCommentsCount[$post->id] = DB::table('comments')->where('nid', $post->id)->count();
         }
 
         // Get posts in order of dates
-        $myPostsCharts = DB::table('posts')->where('uid', $userId)->get();
+        $myPostsCharts = DB::table('feeds')->where('uid', $userId)->get();
         foreach ($myPostsCharts as $post) {
-            $pdateY = date("Y", strtotime($post->created_at));
-            $pdateM = date("M", strtotime($post->created_at));
-            $pdateD = date("j", strtotime($post->created_at));
+            $pdateY = date('Y', strtotime($post->created_at));
+            $pdateM = date('M', strtotime($post->created_at));
+            $pdateD = date('j', strtotime($post->created_at));
             $countp = 1;
             if (!empty($myPostsChart[$pdateD])) {
                 $countp = ($myPostsChart[$pdateD]['count'] + 1);
@@ -99,13 +96,13 @@ class DashBoard extends Controller
             }
         }
 
-        $newArticles = DB::table('posts')->orderby('id', 'desc');
+        $newArticles = DB::table('feeds')->orderby('id', 'desc');
         $myFriendsCount = DB::table('friends')->where(['uid1' => $userId, 'status' => 1])->orwhere(['uid2' => $userId, 'status' => 1])->count();
         $myFollowersCount = Followers::where('who', $userId)->count();
         $randomUser = DashBoard::randomUser();
 
         // Get all views happend to any user blog
-        $myViews = DB::table('posts')->where('uid', $userId)->first();
+        $myViews = DB::table('feeds')->where('uid', $userId)->first();
 
         // Todo list for each user
         $toDoList = ToDO::where('uid', $userId)->orderBy('created_at', 'desc');
@@ -140,9 +137,10 @@ class DashBoard extends Controller
             'myFiles' => $myFiles,
             'randomUser' => $randomUser,
             'newArticles' => $newArticles,
-            'toDoList' => $toDoList
+            'toDoList' => $toDoList,
         ]);
     }
+
     public function postDash()
     {
         return view('pages.dashboard');
@@ -151,37 +149,41 @@ class DashBoard extends Controller
     public function randomUser()
     {
         $randomUser = User::inRandomOrder()->first();
+
         return $randomUser;
     }
 
     public function postComments($nid)
     {
-
         return;
     }
+
     public function getFriendsID($uid)
     {
         $getFriendsID = DB::table('friends')->where('uid1', $uid)->get();
+
         return $getFriendsID;
     }
+
     public function getUserInfo($uid)
     {
         $userInfo = User::find($uid);
+
         return $userInfo;
     }
+
     public function getUserPosts($uid)
     {
         $getUserPosts = Post::where('uid', $uid);
+
         return $getUserPosts;
     }
 
     protected function finishAccount($uid)
     {
-
         // add profile account for extra fields
         $userProfile = DB::table('profiles')->where('uid', $uid)->first();
         if (empty($userProfile)) {
-
             $newPro = new Profile();
             $newPro->uid = $uid;
             $newPro->picture = 'img/profileM.png';
@@ -189,6 +191,7 @@ class DashBoard extends Controller
             DashBoard::updateUser($uid, $newPro->id);
         }
     }
+
     protected function updateUser($uid, $proID)
     {
         // save the data to tthe database
