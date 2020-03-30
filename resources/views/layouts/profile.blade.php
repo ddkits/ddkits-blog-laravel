@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="robots" content="all,follow">
    {{-- <link rel="canonical" href="{{ env('APP_URL') }}"> --}}
-   <link rel="canonical" href="https://english.mawajez.com">
+   <link rel="canonical" href="https://comedy.reallexi.com">
     @include('includes.profileHead')
     @yield('meta')
      @yield('styles')
