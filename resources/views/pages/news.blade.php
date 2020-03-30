@@ -11,15 +11,15 @@
 <!-- {{ $getInfo->getValue('sitename') }} -->
 
 @section('meta')
-<title>{{ $getInfo->getValue('sitename') }} | News</title>
+<title>{{ $getInfo->getValue('sitename') }}</title>
 <meta name="description" content="{{ $getInfo->getValue('description') }}">
-<meta name="keywords" content="{{ $getInfo->getValue('main_keywords') }}, News">
-<meta name="title" content="{{ $getInfo->getValue('sitename') }} | News">
+<meta name="keywords" content="{{ $getInfo->getValue('main_keywords') }}, blog">
+<meta name="title" content="{{ $getInfo->getValue('sitename') }}">
 <meta name="author" content="Mutasem Elayyoub">
-<meta property="og:title" content="{{ $getInfo->getValue('sitename') }}| News" />
+<meta property="og:title" content="{{ $getInfo->getValue('sitename') }}" />
 <meta property="og:type" content="blog.news" />
 <meta property="og:url" content="{{ Request::url() }}" />
-<meta property="og:site_name" content="{{ $getInfo->getValue('sitename') }} | News" />
+<meta property="og:site_name" content="{{ $getInfo->getValue('sitename') }}" />
 <meta property="og:description" content="{{ $getInfo->getValue('description') }}" />
 <meta property="og:image" content="{{ Request::url() }}{{ $getInfo->getValue('homepage_image') }}" />
 
