@@ -143,8 +143,8 @@ class FacebookCont extends Controller
                 $fb->setDefaultAccessToken($key->foreverPageAccessToken);
                 // try {
                 $fb->post($key->pageId.'/feed', [
-                    'message' => 'Real Lexi all the Fun and Comedy',
-                    'link' => 'https://comedy.reallexi.com',
+                    'message' => env('APP_NAME'),
+                    'link' => env('APP_URL'),
                 ], $key->foreverPageAccessToken);
             } catch (\FacebookAuthorizationException $th) {
                 Session::flash('Error', json_decode($th));
