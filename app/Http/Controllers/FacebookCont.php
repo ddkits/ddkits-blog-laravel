@@ -42,6 +42,13 @@ class FacebookCont extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'appId' => 'required',
+            'appSecret' => 'required',
+            'userAccessToken' => 'required',
+            'pageId' => 'required',
+        ]);
         if ($request) :
         $foreverPageAccessToken = $this->getPageAccessToken($request->appId, $request->appSecret, $request->userAccessToken, $request->pageId);
 

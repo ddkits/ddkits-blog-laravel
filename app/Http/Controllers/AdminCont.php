@@ -444,45 +444,22 @@ class AdminCont extends Controller
     protected function storeSettings(Request $request)
     {
         // sitename
-
-        if ($request->sitename) {
-            DB::table('settings')->where('field_name', 'sitename')->update([
-                'value' => $request->sitename,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'uid' => Auth::user()->id,
-            ]);
-        }
-
-        if ($request->description) {
-            DB::table('settings')->where('field_name', 'description')->update([
-                'value' => $request->description,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'uid' => Auth::user()->id,
-            ]);
-        }
-
-        if ($request->main_keywords) {
-            DB::table('settings')->where('field_name', 'main_keywords')->update([
-                'value' => $request->main_keywords,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'uid' => Auth::user()->id,
-            ]);
-        }
-
-        if ($request->google_analytic) {
-            DB::table('settings')->where('field_name', 'google_analytic')->update([
-                'value' => $request->google_analytic,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'uid' => Auth::user()->id,
-            ]);
-        }
-
-        if ($request->homepage_image) {
-            DB::table('settings')->where('field_name', 'homepage_image')->update([
-                'value' => $request->homepage_image,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'uid' => Auth::user()->id,
-            ]);
+        $table = 'settings';
+        $col = DB::table($table)->get();
+        $uid = Auth::user()->id;
+        DB::table($table)->whereIn('type', ['settings', 'private', 'config'])->delete();
+        foreach ($col as $key) {
+            $name = $key->field_name;
+            if ($request->$name) {
+                $field = $request->$name;
+                DB::table('settings')->insert([
+                    'field_name' => $key->field_name,
+                    'value' => $field,
+                    'type' => $key->type,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'uid' => $uid,
+                ]);
+            }
         }
 
         Session::flash('Success', 'Settings Saved Successfully!');
