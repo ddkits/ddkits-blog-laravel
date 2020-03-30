@@ -37,6 +37,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::delete('/admin/feeds-list-delete-one/{id}', ['as' => 'feeds.list.delete', 'uses' => 'FeedsCont@feedsListDelete']);
 
         Route::resource('/admin', 'AdminCont');
+        Route::resource('/admin-facebook', 'FacebookCont');
+        Route::post('/admin-facebook-post', ['as' => 'admin-facebook.post', 'uses' => 'FacebookCont@postToPage']);
         Route::resource('/admin/private/settings', 'SettingCont');
         Route::post('/admin-save/settings', ['as' => 'admin.settings.save', 'uses' => 'AdminCont@storeSettings']);
         Route::post('/create-settings', ['as' => 'settings.store', 'uses' => 'AdminCont@createSettings']);

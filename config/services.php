@@ -47,10 +47,10 @@ return [
     ],
 
     'facebook' => [
-        'app_id' => getenv('FACEBOOK_APP_ID', '584857442336768'),
-        'client_id' => env('FACEBOOK_CLIENT_ID', '584857442336768'),         // Your Facebook App Client ID
+        'app_id' => env('FACEBOOK_APP_ID', '10162817087695634'),
+        'client_id' => env('FACEBOOK_CLIENT_ID', '10162817087695634'),         // Your Facebook App Client ID
         'client_secret' => env('FACEBOOK_CLIENT_SECRET', 'd8cffd5f033b81df8a9d9845c3528e66'), // Your Facebook App Client Secret
         'redirect' => env('FACEBOOK_REDIRECT', 'https://'.env('APP_URL').'/login/facebook/callback'), // Your application route used to redirect users back to your app after authentication
-        'default_graph_version' => 'v2.12',
+        'default_graph_version' => 'v2.5',
     ],
 ];

@@ -13,6 +13,12 @@
 @section('title')
   Welcome {{ Auth::user()->name }}
  @stop
+ @section('meta')
+ <script src="//code.highcharts.com/highcharts.js"></script>
+ <script src="//code.highcharts.com/modules/exporting.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+ @endsection
+
   @section('content')
 
   <!-- Dashboard Admin level 0 only Counts Section-->

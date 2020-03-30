@@ -10,6 +10,7 @@ use App\userFiles;
 use App\Feeds;
 use App\FeedsList;
 use App\postTags;
+use App\Facebook as FacebookModel;
 use Facebook\Facebook;
 use App\postCategories;
 use Session;
@@ -1136,7 +1137,7 @@ class FeedsCont extends Controller
     // share with facebook SDK
     public function doShare($feed)
     {
-        $post = new GraphController();
-        $post->publishToPageNew('106800667637693', $feed);
+        $post = new FacebookModel();
+        \App('\App\Http\Controllers\FacebookCont')->publishToPageNew($feed);
     }
 }
