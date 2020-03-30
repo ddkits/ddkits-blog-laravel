@@ -398,7 +398,18 @@ img {
         display: none;
     }
 }
-
+@media (max-width: $tablet) {
+    body {
+        #video-view {
+            height: 40% !important;
+        }
+    }
+}
+body {
+    #video-view {
+        height: 70%;
+    }
+}
 @media (max-width: $desktop) {
     .whytopost-ddkits-principal {
         min-width: 100%;

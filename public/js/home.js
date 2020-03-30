@@ -89,7 +89,8 @@ $(document).ready(function($) {
 function showVideo(linkIs) {
     var $iframe = $("<iframe>")
         .attr("src", linkIs)
-        .attr("style", "width:100%;height:40%");
+        .attr("allowfullscreen", "true")
+        .attr("style", "width:100%;height:100%");
     $("#video-view")
         .append($iframe)
         .show();

@@ -19,7 +19,7 @@
     </nav>
 
     <!-- Page Header -->
-    <div id="video-view" style="top:20%;left:0;display:none;width:100%;position:fixed;z-index:10;background:black;padding:50px">
+    <div id="video-view" style="top:20%;left:0;display:none;width:100%;position:fixed;z-index:10;background:black;padding:20px 5px">
         <a id="closevideo" class="pull-right col-md-12" style="cursor:pointer" aria-valuetext="close video"><h3>X Close</h3></a>
         @include('includes.google-ad')
     </div>
@@ -37,7 +37,8 @@
             var $this = $(this);
             var $iframe = $("<iframe>")
                 .attr("src", $this.data("link"))
-                .attr("style", "width:100%;height:40%");
+                .attr("allowfullscreen", "true")
+                .attr("style", "width:100%;height:100%");
             var $title = $("<h1>").text($this.data("title"));
             $("#video-view")
                 .append($iframe)
