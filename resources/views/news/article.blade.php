@@ -78,8 +78,7 @@ $image = ($post->image == 'img/blogImage.jpg')? 'https://english.mawajez.com/'.$
                            @endforeach
                   </span>
                   @endif
-                  <p>Source: {{ $post->source }}</p>
-                  <p>By: {{ $post->author }}</p>
+                  <p>By: {{ $post->author }} - Viewed: {{ $Views->getFeedViews($post->id) }}
 
             </div>
         </div>
