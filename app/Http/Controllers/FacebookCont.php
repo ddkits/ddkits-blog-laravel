@@ -183,12 +183,12 @@ class FacebookCont extends Controller
         //FB post content
         $message = (string) $feed->title;
         $title = (string) $feed->title;
-        $link = (string) env('APP_URL').'/'.$feed->path;
+        $link = (string) env('APP_URL').'/news/'.$feed->path;
         $description = (string) $feed->title;
         $picture = (string) env('APP_URL').'/'.$feed->image;
 
         $attachment = array(
-            'message' => $message,
+            'message' => $message.' - '.$link,
             // 'name' => $title,
             'link' => $link,
             // 'description' => $description,
