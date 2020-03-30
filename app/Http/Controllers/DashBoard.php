@@ -57,14 +57,12 @@ class DashBoard extends Controller
             }
         }
         // get my posts only
-        $myPosts = DB::table('feeds')->where('uid', $userId);
+        $myPosts = DB::table('feeds')->where('uid', $userId)->orderBy('id', 'desc');
         $myPostsCount = DB::table('feeds')->where('uid', $userId)->count();
         foreach ($myPosts->get() as $post) {
             $existViews = DB::table('views')->where('nid', $post->id)->first();
             if ($existViews) {
                 $countv = $countv + $existViews->views;
-                $myPostsViews = $countv;
-                $myPostViews[$post->id] = $existViews->views;
             } else {
                 $existViewsAdd = DB::table('views')->insert([
                     'nid' => $post->id,
@@ -72,9 +70,9 @@ class DashBoard extends Controller
                     ]);
                 $existViews = DB::table('views')->where('nid', $post->id)->first();
                 $countv = $countv + $existViews->views;
-                $myPostsViews = $countv;
-                $myPostViews[$post->id] = $existViews->views;
             }
+            $myPostsViews = $countv;
+            $myPostViews[$post->id] = $existViews->views;
             $myViewsChart[$post->title] = $existViews->views;
             // comments for each blogs
             $postComments[$post->id] = DB::table('comments')->where('nid', $post->id)->get();
