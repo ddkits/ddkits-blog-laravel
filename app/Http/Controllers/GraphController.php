@@ -110,70 +110,70 @@ class GraphController extends Controller
         * Configuration and setup Facebook SDK
         */
 
-        $redirectURL = env('FACEBOOK_REDIRECT'); //Callback URL
-        $fbPermissions = array('publish_actions'); //Facebook permission
+        // $redirectURL = env('FACEBOOK_REDIRECT'); //Callback URL
+        // $fbPermissions = array('publish_actions'); //Facebook permission
 
-        $fb = new Facebook(array(
-            'app_id' => env('FACEBOOK_APP_ID_ID', '584857442336768'),
-            'app_secret' => env('FACEBOOK_APP_SECRET', 'd8cffd5f033b81df8a9d9845c3528e66'),
-            'default_graph_version' => 'v2.6',
-        ));
+        // $fb = new Facebook(array(
+        //     'app_id' => env('FACEBOOK_APP_ID_ID', '584857442336768'),
+        //     'app_secret' => env('FACEBOOK_APP_SECRET', 'd8cffd5f033b81df8a9d9845c3528e66'),
+        //     'default_graph_version' => 'v2.6',
+        // ));
 
-        // Get redirect login helper
-        $helper = $fb->getRedirectLoginHelper();
-        if (isset($accessToken)) {
-            if (isset($_SESSION['facebook_access_token'])) {
-                $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
-            } else {
-                // Put short-lived access token in session
-                $_SESSION['facebook_access_token'] = (string) env('FACEBOOK_ACCESS_TOKEN');
+        // // Get redirect login helper
+        // $helper = $fb->getRedirectLoginHelper();
+        // if (isset($accessToken)) {
+        //     if (isset($_SESSION['facebook_access_token'])) {
+        //         $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
+        //     } else {
+        //         // Put short-lived access token in session
+        //         $_SESSION['facebook_access_token'] = (string) env('FACEBOOK_ACCESS_TOKEN');
 
-                // OAuth 2.0 client handler helps to manage access tokens
-                $oAuth2Client = $fb->getOAuth2Client();
+        //         // OAuth 2.0 client handler helps to manage access tokens
+        //         $oAuth2Client = $fb->getOAuth2Client();
 
-                // Exchanges a short-lived access token for a long-lived one
-                $longLivedAccessToken = $oAuth2Client->getLongLivedAccessToken($_SESSION['facebook_access_token']);
-                $_SESSION['facebook_access_token'] = (string) $longLivedAccessToken;
+        //         // Exchanges a short-lived access token for a long-lived one
+        //         $longLivedAccessToken = $oAuth2Client->getLongLivedAccessToken($_SESSION['facebook_access_token']);
+        //         $_SESSION['facebook_access_token'] = (string) $longLivedAccessToken;
 
-                // Set default access token to be used in script
-                $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
-            }
+        //         // Set default access token to be used in script
+        //         $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
+        //     }
 
-            //FB post content
-            $message = $feed->title;
-            $title = $feed->title;
-            $link = env('APP_URL').'/'.$feed->path;
-            $description = $feed->title;
-            $picture = env('APP_URL').'/'.$feed->image;
+        //     //FB post content
+        //     $message = $feed->title;
+        //     $title = $feed->title;
+        //     $link = env('APP_URL').'/'.$feed->path;
+        //     $description = $feed->title;
+        //     $picture = env('APP_URL').'/'.$feed->image;
 
-            $attachment = array(
-                'message' => $message,
-                'name' => $title,
-                'link' => $link,
-                'description' => $description,
-                'picture' => $picture,
-                'scope' => 'publish_actions',
-            );
+        //     $attachment = array(
+        //         'message' => $message,
+        //         'name' => $title,
+        //         'link' => $link,
+        //         'description' => $description,
+        //         'picture' => $picture,
+        //         'scope' => 'publish_actions',
+        //     );
 
-            try {
-                // Post to Facebook
-                $fb->post('/'.$page_id.'/feed?scope=publish_actions&scopes=publish_actions', $attachment, (string) env('FACEBOOK_ACCESS_TOKEN'));
+        //     try {
+        //         // Post to Facebook
+        //         $fb->post('/'.$page_id.'/feed?scope=publish_actions&scopes=publish_actions', $attachment, (string) env('FACEBOOK_ACCESS_TOKEN'));
 
-                // Display post submission status
-                echo 'The post was published successfully to the Facebook timeline.';
-            } catch (FacebookResponseException $e) {
-                echo 'Graph returned an error: '.$e->getMessage();
-                exit;
-            } catch (FacebookSDKException $e) {
-                echo 'Facebook SDK returned an error: '.$e->getMessage();
-                exit;
-            }
-        } else {
-            // Get Facebook login URL
-            $fbLoginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
+        //         // Display post submission status
+        //         echo 'The post was published successfully to the Facebook timeline.';
+        //     } catch (FacebookResponseException $e) {
+        //         echo 'Graph returned an error: '.$e->getMessage();
+        //         exit;
+        //     } catch (FacebookSDKException $e) {
+        //         echo 'Facebook SDK returned an error: '.$e->getMessage();
+        //         exit;
+        //     }
+        // } else {
+        //     // Get Facebook login URL
+        //     $fbLoginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
 
-            // Redirect to Facebook login page
-            echo '<a href="'.$fbLoginURL.'"><img src="fb-btn.png" /></a>';
-        }
+        //     // Redirect to Facebook login page
+        //     echo '<a href="'.$fbLoginURL.'"><img src="fb-btn.png" /></a>';
+        // }
     }
 }
