@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3eca7ed1411ffd7220390819aef04394",
+    "content-hash": "3b835124b6150e2cdeb27b5a34061927",
     "packages": [
+        {
+            "name": "ddkits/ddkitsfacebook",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ddkits/ddkits-facebook-poster.git",
+                "reference": "ae285ee2dbafbc3fd6fcf88bd86b8520ac353744"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ddkits/ddkits-facebook-poster/zipball/ae285ee2dbafbc3fd6fcf88bd86b8520ac353744",
+                "reference": "ae285ee2dbafbc3fd6fcf88bd86b8520ac353744",
+                "shasum": ""
+            },
+            "require": {
+                "facebook/graph-sdk": "*",
+                "laravelcollective/html": "*",
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ddkits\\ddkitsfacebook\\DdkitsfacebookServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ddkits\\Ddkitsfacebook\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Sam Elayyoub",
+                    "email": "melayyoub@outlook.com"
+                }
+            ],
+            "description": "Facebook Page Poster by Sam Elayyoub, using custom table and custom functions to post to pages or groups on facebook.",
+            "time": "2020-03-30T23:47:16+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
