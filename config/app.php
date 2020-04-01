@@ -186,7 +186,7 @@ return [
         // Ddkits\Feedsimport\FeedsImportServiceProvider::class,
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
-        App\Providers\FacebookServiceProvider::class,
+        // App\Providers\FacebookServiceProvider::class,
     ],
 
     /*
@@ -243,6 +243,6 @@ return [
         'profile' => App\Profile::class,
         'getProfile' => App\Http\Controllers\ProfileCont::class,
         'User' => Illuminate\Foundation\Auth\User::class,
-        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        // 'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
     ],
 ];
