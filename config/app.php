@@ -177,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // DDKits Facebook Social Share plugin
-        Ddkits\Ddkitsfacebook\DdkitsfacebookServiceProvider::class,
+        // Ddkits\Ddkitsfacebook\DdkitsfacebookServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
