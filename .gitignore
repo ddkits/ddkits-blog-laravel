@@ -5,6 +5,7 @@
 /public/node_modules*
 /public/storage
 /public/uploads
+/packages
 /public/.htaccess
 public/.htaccess
 public/node_modules*

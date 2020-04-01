@@ -18,7 +18,7 @@
 <meta property="og:type" content="blog.news" />
 <meta property="og:url" content="{{ Request::url() }}" />
 @php
-$image = ($post->image == 'img/blogImage.jpg')? 'https://english.mawajez.com/'.$post->image: $post->image;
+   $image= env('APP_URL').'/'.$post->image;
 @endphp
 <meta property="og:image" content="{{ $image }}" />
 <meta property="og:site_name" content="{{ $getInfo->getValue('sitename') }}" />
