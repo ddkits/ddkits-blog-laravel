@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.ddkits.reallexicomedy",
+    "sha256_cert_fingerprints":
+    ["DC:25:47:2E:A3:08:54:62:61:B6:9B:A5:5F:BB:03:5D:03:87:3A:9C:58:94:88:1D:B9:CC:68:54:BA:7E:75:E4"]
+  }
+}]
